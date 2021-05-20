@@ -1,0 +1,11 @@
+body {
+    font-family: "Lato", sans-serif;
+    margin: 0px;
+  }
+
+.navbar-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 38px;
+    border-bottom: 1px solid black;
+  }
