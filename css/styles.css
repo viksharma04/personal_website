@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 :root{
-  --prim-color: rgb(49, 42, 53);
+  --prim-color: white;
+  --dark-color: #000;
 }
 
 * {
@@ -42,10 +44,18 @@ img{
 
 .navbar {
   overflow: hidden;
-  background-color: #333;
-  font-family: Arial;
-  color: #fff;
+  color: #000;
   }
+
+.navbar .container{
+  padding: 10px 50px;
+} 
+
+.navbar .logo{
+  font-size: 2.5rem;
+  font-weight: bold;
+  /* font-family: 'Pacifico', cursive; */
+}
 
 .navbar .flex{
   justify-content: space-between;
@@ -54,10 +64,13 @@ img{
 .navbar a{
   float: left;
   font-size: 16px;
-  color: white;
+  font-weight: bold;
+  color: black;
   text-align: center;
-  padding: 14px 16px;
+  padding: 0 10px;
   text-decoration: none;
+  overflow: auto;
+  transition: 0.3s;
 }
 
 .navbar ul{
@@ -91,6 +104,8 @@ img{
 
 .navbar a:hover, .dropdown:hover .dropbtn {
   background-color: #000;
+  color: white;
+  border-radius: 10%;
 }
 
 .dropcontent a {
@@ -105,3 +120,97 @@ img{
 .dropcontent a:hover {background-color: #ddd;}
 
 .dropdown:hover .dropcontent {display: block;}
+
+/* Main Section */
+
+.main .flex{
+  align-items: center;
+  justify-content: center;
+}
+
+.main .container{
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  height: 800px;
+  width: auto;
+}
+
+.main .container .grid{
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.main .card{
+  background-position: center;
+  background-size: cover;
+  background-repeat: repeat;
+  position: relative;
+  color: white;
+}
+
+.first-card .card{
+  display: flex;
+  height: 400px;
+  width: 700px;
+  background-image: url(/images/portfolio_img.JPG);
+  transition: 0.5s ease-in-out;
+}
+
+.first-card .card .flex{
+  display: flex;
+  justify-content: space-evenly;
+  float: left;
+}
+
+.first-card p{
+  display: none;
+}
+
+.first-card .card:hover{
+  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(/images/portfolio_img.JPG);
+}
+
+.first-card .card:hover p{
+  display: grid;
+  color: white;
+  font-size: 16px;
+  font-style: italic;
+  padding: 30px;
+}
+
+.other-cards .card{
+  height: 100px;
+  width: 300px;
+  color: #000;
+  border: solid 1px black;
+  transition: 0.3s ease-in;
+}
+
+.other-cards a{
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.other-cards .card:hover{
+  background-color: black;
+  color: white;
+}
+
+.other-cards .card:hover a{
+  color: white;
+}
+/* Footer */
+
+.footer .container{
+  justify-content: space-between;
+  color: white;
+  padding: 20px;
+}
+
+.footer a{
+  padding: 10px;
+  color: white;
+}
