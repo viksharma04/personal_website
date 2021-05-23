@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+:root{
+  --prim-color: rgb(49, 42, 53);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+ul{
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+h1, h2 {
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 10px 0;
+}
+
+p {
+  margin: 10px 0;
+}
+
+img{
+  width: 100%;
+}
+
+/* NAVBAR - Section 1 */
+
+.navbar {
+    background-color: var(--prim-color);
+    border-bottom: 1px solid black;
+    overflow: auto;
+    color: #f1f1f1;
+  }
+
+.dropbtn {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  font-size: 10px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropcontent {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropcontent a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropcontent a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropcontent {display: block;}
