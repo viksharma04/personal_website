@@ -154,8 +154,12 @@ img{
   display: flex;
   height: 400px;
   width: 700px;
-  background-image: url(/images/portfolio_img.JPG);
+  background-image: url(https://chi01pap001files.storage.live.com/y4meGCHPUDfMNXlEuSPQCCGHQmQNgDKpT2UIHTZ29T0EdGl6DNY-JCl_rAw3rP7sFklg2TOEtUbA0LPfa4Z9dMW1kXjS8QvReZzu1Ncm-eWGNoEpX3mbnJRkURlNIiVZfr_yVpMoihBcq96_sWE2iFJNpY2bL4dQtPCyh8BiB6vzgIPXdC6jRkqO4ICcGg7lwfpX4KYfMyV67iO-IH5ZKEOJQ/portfolio_img.JPG?psid=1&width=587&height=392); 
   transition: 0.5s ease-in-out;
+}
+
+.img-darken{
+  filter: brightness(50%);
 }
 
 .first-card .card .flex{
@@ -169,8 +173,8 @@ img{
 }
 
 .first-card .card:hover{
-  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(/images/portfolio_img.JPG);
-}
+  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(https://chi01pap001files.storage.live.com/y4meGCHPUDfMNXlEuSPQCCGHQmQNgDKpT2UIHTZ29T0EdGl6DNY-JCl_rAw3rP7sFklg2TOEtUbA0LPfa4Z9dMW1kXjS8QvReZzu1Ncm-eWGNoEpX3mbnJRkURlNIiVZfr_yVpMoihBcq96_sWE2iFJNpY2bL4dQtPCyh8BiB6vzgIPXdC6jRkqO4ICcGg7lwfpX4KYfMyV67iO-IH5ZKEOJQ/portfolio_img.JPG?psid=1&width=587&height=392);
+} 
 
 .first-card .card:hover p{
   display: grid;
