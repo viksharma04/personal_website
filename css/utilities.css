@@ -12,6 +12,7 @@
     padding: 20px;
     margin: 10px;
     transition: 0.5s;
+    justify-content: center;
 }
 
 .card:hover{
