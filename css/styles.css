@@ -189,6 +189,8 @@ img{
 }
 
 .other-cards a{
+  padding: none; 
+  margin: none;
   text-decoration: none;
   font-size: 16px;
   font-weight: bolder;
