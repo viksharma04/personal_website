@@ -31,6 +31,10 @@
     height: 100%;
 }
 
+h1,h2{
+    justify-self: center;
+}
+
 .grid{
     display: grid;
     grid-template-columns: 1fr;

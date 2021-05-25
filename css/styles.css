@@ -195,7 +195,7 @@ img{
 }
 
 .other-cards .card:hover{
-  background-color: black;
+  background-color: rgb(51, 51, 51);
   color: white;
 }
 
@@ -205,17 +205,58 @@ img{
 
 /* Projects */
 
-.projects .heading{
-  justify-self: center;
+.heading{
+  position: relative;
+  left: 42%;
+  width: 250px;
+  background-color: #000;
+  color: white;
+  transform: skewY(-2deg);
+  -moz-transform: skewY(-2deg);
+  -webkit-transform: skewY(-2deg);
+  -ms-transform: skewY(-2deg);
 }
 
-.projects .heading h1{
+.heading h1{
+  justify-self: center;
   font-size: 2rem;
   font-weight: bold;
+  margin: 0.5em;
+  padding: 0.5em;
 }
 
-.projecs .grid{
-grid-template-columns: 1fr 1fr;
+.project-cards{
+  display: grid;
+  min-height: 700px;
+  height: auto;
+  width: auto;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  padding: 20px;
+  gap: 15px;
+}
+
+.project-cards .flex{
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.project-cards .card{
+  border: solid 1px rgba(0,0,0,0.2);
+}
+
+.project-cards .card:hover{
+  background-color: rgb(51, 51, 51);
+  color: white;
+}
+
+.project-cards .card:hover a{
+  padding: none;
+  color: white;
+}
+
+.project-cards a{
+  text-decoration: underline;
 }
 
 /* Footer */
