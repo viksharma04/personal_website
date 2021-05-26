@@ -105,8 +105,8 @@ img{
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: #fff;
-  color: #000;
+  background-color: black;
+  color: white;
   border-radius: 10%;
 }
 
@@ -212,9 +212,6 @@ img{
 /* Projects */
 
 .heading{
-  position: relative;
-  left: 42%;
-  width: 250px;
   background-color: #000;
   color: white;
   transform: skewY(-2deg);
@@ -224,16 +221,14 @@ img{
 }
 
 .heading h1{
-  justify-self: center;
   font-size: 2rem;
   font-weight: bold;
-  margin: 0.5em;
-  padding: 0.5em;
 }
 
 .project-cards{
   display: grid;
   min-height: 700px;
+  min-width: 300px;
   height: auto;
   width: auto;
   grid-template-columns: 1fr 1fr;
@@ -281,14 +276,14 @@ img{
 }
 
 /* Mobile */
-@media(max-width: 700px){
+@media(max-width: 768px){
   .navbar{
       height: 110px;
   }
 
   .main .flex{
     flex-direction: column;
-}
+  }
 
   .navbar .flex{
       flex-direction: column;
@@ -306,4 +301,15 @@ img{
 
   .navbar ul{
       padding: 10px;
+  }
+
+  .project-cards{
+    display: grid;
+    min-height: 200px;
+    height: auto;
+    width: auto;
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 15px;
+  }
 }
