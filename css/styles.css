@@ -13,8 +13,9 @@
 }
 
 body {
+  background-color: white;
   font-family: "Lato", sans-serif;
-  color: #333;
+  color: black;
   line-height: 1.6;
 }
 
@@ -44,10 +45,11 @@ img{
 
 .navbar {
   overflow: hidden;
-  color: #000;
+  color: black;
   }
 
 .navbar .container{
+  background-color: white;
   padding: 10px 50px;
 } 
 
@@ -103,8 +105,8 @@ img{
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: #000;
-  color: white;
+  background-color: #fff;
+  color: #000;
   border-radius: 10%;
 }
 
@@ -147,7 +149,7 @@ img{
   background-size: cover;
   background-repeat: repeat;
   position: relative;
-  color: white;
+  color: black;
 }
 
 .first-card .card{
@@ -181,9 +183,10 @@ img{
 }
 
 .other-cards .card{
+  background-color: white;
   height: 100px;
   width: 300px;
-  color: #000;
+  color: black;
   border: solid 1px black;
   transition: 0.3s ease-in;
 }
@@ -191,6 +194,7 @@ img{
 .other-cards a{
   padding: none; 
   margin: none;
+  color: black;
   text-decoration: none;
   font-size: 16px;
   font-weight: bolder;
@@ -198,7 +202,7 @@ img{
 
 .other-cards .card:hover{
   background-color: rgb(51, 51, 51);
-  color: white;
+  color: whitesmoke;
 }
 
 .other-cards .card:hover a{
@@ -244,6 +248,7 @@ img{
 }
 
 .project-cards .card{
+  background-color: whitesmoke;
   border: solid 1px rgba(0,0,0,0.2);
 }
 
@@ -265,13 +270,14 @@ img{
 
 .footer .container{
   justify-content: space-between;
+  background-color: black;
   color: white;
   padding: 20px;
 }
 
 .footer a{
   padding: 10px;
-  color: white;
+  color: #fff;
 }
 
 /* Mobile */
