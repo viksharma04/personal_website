@@ -44,8 +44,8 @@ img{
 /* NAVBAR - Section 1 */
 
 .navbar {
-  overflow: hidden;
   color: black;
+  position: relative;
   }
 
 .navbar .container{
@@ -60,6 +60,7 @@ img{
 }
 
 .navbar .flex{
+  height: auto;
   justify-content: space-between;
 }
 
@@ -71,7 +72,6 @@ img{
   text-align: center;
   padding: 0 10px;
   text-decoration: none;
-  overflow: auto;
   transition: 0.3s;
 }
 
@@ -81,11 +81,11 @@ img{
 .logo{
   padding: 5px;
   border-radius: 10x;
-  transition: 0.5s ease-in;
+  transition: 0.2s ease-in;
 }
 
 .logo:hover{
-  background-color: purple;
+  background-color: rgba(95, 7, 95, 0.692);
   color: whitesmoke;
   border-radius: 10px;
 }
@@ -221,6 +221,10 @@ img{
 }
 
 /* Projects */
+
+.projects{
+  padding-top: 20px;
+}
 
 .heading{
   background-color: #000;
