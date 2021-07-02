@@ -45,7 +45,10 @@ img{
 
 .navbar {
   color: white;
-  position: relative;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  overflow: hidden;
   }
 
 .navbar .container{
