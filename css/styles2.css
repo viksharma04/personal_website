@@ -1,3 +1,4 @@
+/* Project.html  */
 .main-projects-wrapper{
     display: flex;
     flex-direction: column;
@@ -52,4 +53,36 @@
 .nobe img{
     height: 100px;
     width: 200px;
+}
+
+/* Index.html */
+
+.main-wrapper{
+    display: grid;
+    grid-template-rows: 2fr 2fr 1fr;
+}
+
+.image-container{
+    background-color: rgb(198, 178, 216);
+    padding: 20px 20px;
+}
+
+.image-container img{
+    height: 500px;
+    object-fit: cover ;
+    border-radius: 40px; 
+    box-shadow: 0px 8px 16px 0px rgb(143, 89, 190);
+}
+
+.about-container{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    padding: 20px 20px;
+}
+
+.about-container h1{
+    font-size: 40px;
+    font-weight: bold;
 }
