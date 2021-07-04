@@ -154,7 +154,7 @@ img{
   align-items: center;
   height: 100%;
 }
-}
+
 
 .other-cards a{
   padding: none; 
@@ -228,8 +228,6 @@ img{
 
 /* Mobile */
 @media(max-width: 768px){
-
-
   .navbar{
       height: auto;
       overflow: hidden;
@@ -269,11 +267,6 @@ img{
 
   .other-cards {
     flex-direction: column;
-  }
-
-  .about{
-    padding: 0px 0px;
-    margin: 0%;
   }
 
   
