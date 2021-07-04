@@ -216,12 +216,12 @@ img{
 }
 
 .other-cards .card:hover{
-  background-color: rgb(51, 51, 51);
-  color: whitesmoke;
+  background-color: rgb(198, 178, 216);
+  color: black;
 }
 
 .other-cards .card:hover a{
-  color: white;
+  color: black;
 }
 
 
@@ -279,7 +279,8 @@ img{
 /* Mobile */
 @media(max-width: 768px){
   .navbar{
-      height: 110px;
+      height: auto;
+      overflow: hidden;
   }
 
   .main .flex{
