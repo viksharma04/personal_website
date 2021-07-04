@@ -82,7 +82,7 @@
 .main-wrapper{
     margin-top: 95px;
     display: grid;
-    grid-template-rows: 2fr 1.5fr 1fr;
+    /* grid-template-rows: 2fr 1.5fr 1fr; */
 }
 
 
@@ -91,9 +91,11 @@
     padding: 20px 20px;
 }
 
+
 .image img{
     height: 600px;
-    object-fit: cover ;
+    object-position: center;
+    object-fit: cover;
     border-radius: 40px; 
     box-shadow: 0px 8px 16px 0px rgb(143, 89, 190);
 }
@@ -113,7 +115,11 @@
 
 .about p{
     font-size: 17px;
-    padding: 0px 50px;
+    padding: 0px 20px;
+}
+
+.links{
+    height: 200px;
 }
 
 
