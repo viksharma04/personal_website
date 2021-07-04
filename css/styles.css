@@ -139,64 +139,6 @@ img{
 .dropdown:hover .dropcontent {display: block;}
 
 /* Main Section */
-
-.main .flex{
-  align-items: center;
-  justify-content: center;
-}
-
-.main .container{
-  background-color: white;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top;
-  height: 800px;
-  width: auto;
-}
-
-.main .container .grid{
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-}
-
-.main .card{
-  background-position: center;
-  background-size: cover;
-  background-repeat: repeat;
-  position: relative;
-  color: black;
-}
-
-.first-card .card{
-  display: flex;
-  height: 400px;
-  width: 700px;
-  background-image: url(https://chi01pap001files.storage.live.com/y4mtJTcmNvycuMf1nKEcaisFRBxKfCwiFEf1V7JidRl1GY_L70383MWqKbqXs1Cf4u0PibtxZyGsm9J4e_ifhQED2TJD9h-jHBffpCZ9VXCSAmtI_q1sfVG26NBj2uH1T3YQlTWc0YZ2Po6rt8-GGY90MS-uoMhujIpwSIta3s3NRGWE6U-8FjwJj6lfd6pzkbgzi51vYLgrTw5TxTCxKP7yw/IMG_2132%201.JPG?psid=1&width=587&height=392); 
-  transition: 0.5s ease-in-out;
-}
-
-.first-card .card .flex{
-  display: flex;
-  justify-content: space-evenly;
-  float: left;
-}
-
-.first-card p{
-  display: none;
-}
-
-.first-card .card:hover{
-  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(https://chi01pap001files.storage.live.com/y4mtJTcmNvycuMf1nKEcaisFRBxKfCwiFEf1V7JidRl1GY_L70383MWqKbqXs1Cf4u0PibtxZyGsm9J4e_ifhQED2TJD9h-jHBffpCZ9VXCSAmtI_q1sfVG26NBj2uH1T3YQlTWc0YZ2Po6rt8-GGY90MS-uoMhujIpwSIta3s3NRGWE6U-8FjwJj6lfd6pzkbgzi51vYLgrTw5TxTCxKP7yw/IMG_2132%201.JPG?psid=1&width=587&height=392);
-} 
-
-.first-card .card:hover p{
-  display: grid;
-  color: white;
-  font-size: 16px;
-  font-style: italic;
-  padding: 30px;
-}
-
 .other-cards .card{
   background-color: white;
   height: 100px;
@@ -204,6 +146,14 @@ img{
   color: black;
   border: solid 1px black;
   transition: 0.3s ease-in;
+}
+
+.other-cards{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 }
 
 .other-cards a{
@@ -278,6 +228,8 @@ img{
 
 /* Mobile */
 @media(max-width: 768px){
+
+
   .navbar{
       height: auto;
       overflow: hidden;
@@ -291,27 +243,39 @@ img{
       flex-direction: column;
   }
 
-  .first-card .card{
-    display: flex;
-    height: 230px;
-    width: 400px;
-  }
-
-  .other-cards .flex{
-    flex-direction: column;
-  }
 
   .navbar ul{
       padding: 10px;
   }
 
-  .project-cards{
-    display: grid;
-    min-height: 200px;
-    height: auto;
-    width: auto;
-    grid-template-columns: 1fr;
-    padding: 20px;
-    gap: 15px;
+  /* Experiment */
+
+  .main-wrapper{
+    display: flex;
+    flex-direction: column;
+   
   }
+  .navbar .logo{
+    font-size: 1rem;
+  }  
+
+  .navbar .container{
+    padding: 10px 20px;
+  }
+
+  .m-container{
+    height: fit-content;
+  }
+
+  .other-cards {
+    flex-direction: column;
+  }
+
+  .about{
+    padding: 0px 0px;
+    margin: 0%;
+  }
+
+  
+
 }
