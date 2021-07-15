@@ -89,6 +89,9 @@
 .image{
     background-color: rgb(198, 178, 216);
     padding: 20px 20px;
+    position: sticky;
+    top: 0px;
+    z-index: -1;
 }
 
 
@@ -106,6 +109,9 @@
     justify-items: center;
     align-items: center;
     padding: 20px 20px;
+    position: sticky;
+    background-color: white;
+    z-index: -1;
 }
 
 .about h1{
