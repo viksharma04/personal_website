@@ -11,12 +11,12 @@
     box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2);
     padding: 20px;
     margin: 10px;
-    transition: 0.5s;
     justify-content: center;
 }
 
 .card:hover{
-    transform: translateY(-5px);
+    transform: translateY(-1.5px);
+    transition: 0.05s ease-in-out;
     box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -45,9 +45,11 @@ h1,h2{
     
 }
 
-.grid-3{
-    grid-template-columns: 1fr 1fr 1fr;
+mark{
+    background-color: black;
+    color: white;
 }
+
 
 /* background Colors */
 

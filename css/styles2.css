@@ -77,55 +77,5 @@
     width: 150px;
 }
 
-/* Index.html */
-
-.main-wrapper{
-    margin-top: 95px;
-    display: grid;
-    /* grid-template-rows: 2fr 1.5fr 1fr; */
-}
-
-
-.image{
-    background-color: rgb(198, 178, 216);
-    padding: 20px 20px;
-    position: sticky;
-    top: 0px;
-    z-index: -1;
-}
-
-
-.image img{
-    height: 600px;
-    object-position: center;
-    object-fit: cover;
-    border-radius: 40px; 
-    box-shadow: 0px 8px 16px 0px rgb(143, 89, 190);
-}
-
-.about{
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
-    padding: 20px 20px;
-    position: sticky;
-    background-color: white;
-    z-index: -1;
-}
-
-.about h1{
-    font-size: 40px;
-    font-weight: bold;
-}
-
-.about p{
-    font-size: 17px;
-    padding: 0px 20px;
-}
-
-.links{
-    height: 200px;
-}
 
 
