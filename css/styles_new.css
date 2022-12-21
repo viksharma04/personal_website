@@ -14,8 +14,16 @@
 }
 
 body {
-  background-color: rgb(75, 75, 75);
+  background-color: rgb(40, 40, 40);
   font-family: 'Courier Prime', monospace;
   color: black;
   line-height: 1.6;
 }
+
+.background{
+    background-color: rgb(35, 35, 35);
+    color: aliceblue;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
