@@ -14,7 +14,9 @@
 }
 
 body {
-  background-color: white;
+  background-image: url(../images/gaelle-marcel-9DZY0mO98xU-unsplash\ \(1\).jpg);
+  /* fit background image to screen */
+  background-size: cover;
   font-family: 'Courier Prime', monospace;
   color: black;
   line-height: 1.6;
