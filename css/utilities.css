@@ -1,3 +1,28 @@
+a{
+    color: white;
+}
+.button {
+    padding: 10px 15px;
+    display: inline-block;
+    color: #fff; /* Text color */
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    transition: all ease 0.2s;
+  }
+  
+.button:hover {
+    color: grey;
+    border: 1px solid white;
+    transform: translateY(-5px);
+  }
+  
+.button:focus {
+    outline: none; /* Remove default focus outline */
+  }
+  
+
 .container{
     margin: 0 auto;
     overflow: auto;
@@ -26,9 +51,18 @@
 
 .flex{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
 }
 
 h1,h2{
@@ -65,3 +99,42 @@ mark{
     background-color: rgb(51,51,51);
     color: white;
 }
+
+/* Animations */
+
+.animate{
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.navbar{
+    animation: dropAnimation 1s ease 0.2s 1 forwards;
+}
+
+.welcome-text{
+    font-size: 45px;
+    animation: fallingBouncing 3s linear 0.5s 1 forwards;
+}
+
+@keyframes dropAnimation{
+    from {
+        transform: translateY(-200px);
+    }
+
+    to{
+        transform: translateY(0);
+    }
+}
+
+@keyframes fallingBouncing {
+    0% { transform: translateY(-500px); color: white; }
+    20% { transform: translateY(20px); }
+    30% { transform: translateY(-150px); }
+    45% { transform: translateY(10px); }
+    55% { transform: translateY(-50px); }
+    65% { transform: translateY(5px); }
+    75% { transform: translateY(-10px); }
+    85% { transform: translateY(2px); }
+    95% { transform: translateY(-2px); }
+    100% { transform: translateY(0px); }
+  }

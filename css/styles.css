@@ -14,20 +14,33 @@
 }
 
 body {
-  background-image: url(../images/gaelle-marcel-9DZY0mO98xU-unsplash\ \(1\).jpg);
-  /* fit background image to screen */
+  height: 100%;
+  background-color: black;
   background-size: cover;
-  font-family: 'Courier Prime', monospace;
-  color: black;
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
   line-height: 1.6;
 }
 
 ul{
+  padding: 5px 10px;
   list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
+
+li{
+  padding: 5px 10px;
+}
+
 a {
+  padding: 5px;
   text-decoration: none;
-  color: #333;
+  color: white;
 }
 
 h1, h2 {
@@ -44,62 +57,12 @@ img{
   width: 100%;
 }
 
-/* NAVBAR - Section 1 */
-
-.navbar {
-  color: white;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  overflow: hidden;
-  }
-
-.navbar .container{
-  background-color: black;
-  padding: 10px 50px;
-} 
-
-.navbar .logo{
-  font-size: 2.5rem;
-  font-weight: bold;
-  /* font-family: 'Pacifico', cursive; */
-}
-
-.navbar .flex{
-  height: auto;
-  justify-content: space-between;
-}
-
-.navbar a{
-  float: left;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  padding: 0 10px;
-  text-decoration: none;
-}
-
-.navbar a:hover{
-  background-color: white;
-  color: black;
-  border-radius: 10%;
-  transition: ease-in-out;
-}
-
-.navbar ul{
+.navbar{
+  padding-top: 20px;
   display: flex;
-}
-.logo{
-  padding: 5px;
-  border-radius: 10x;
-  transition: 0.2s ease-in;
-}
-
-.logo:hover{
-  background-color: rgba(95, 7, 95, 0.692);
-  color: whitesmoke;
-  border-radius: 10px;
+  flex-direction: row;
+  justify-content: center;
+  color: white;
 }
 
 /* Main Section */
@@ -107,13 +70,8 @@ img{
 /* Index.html */
 
 .main-wrapper{
-  margin-top: 95px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 20px;
-  /* grid-template-rows: 2fr 1.5fr 1fr; */
+  width: 100%;
+  height: 80vh;
 }
 
 .image{
@@ -135,108 +93,12 @@ img{
   box-shadow: 0px 4px 8px 0px rgb(0, 0, 0);
 }
 
-.about{
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
-  padding: 20px 20px;
-  position: sticky;
-  background-color: white;
-  z-index: -1;
-}
-
-.about h1{
-  font-size: 40px;
-  font-weight: bold;
-}
-
-.about p{
-  font-size: 17px;
-  padding: 0px 20px;
-}
-
-.links{
-  height: 200px;
-}
-
-.other-cards .card{
-  background-color: white;
-  height: 100px;
-  width: 300px;
-  color: black;
-  border: solid 1px black;
-  transition: 0.3s ease-in;
-}
-
-.other-cards{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.other-cards a{
-  padding: none; 
-  margin: none;
-  color: black;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bolder;
-}
-
-.other-cards .card:hover{
-  background-color: rgb(198, 178, 216);
-  color: black;
-}
-
-.other-cards .card:hover a{
-  color: black;
-}
-
-
-/* info */
-
-.info{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.education{
-  background-color: rgb(41, 39, 39);
-  color: #fff;
-  padding: 20px;
-}
-.education h1{
-  padding-top: 15px;
-  font-size: 32px;
-  font-weight: bolder;
-}
-
-.education h2{
-  font-weight: bold;
-}
-
-.education h3,h5{
-  font-weight: lighter;
-}
-
-.contact{
-  background-color:rgb(41, 39, 39);
-  color: white;
-  padding: 20px;
-}
-
-.contact h1{
-  padding-top: 15px;
-  font-size: 32px;
-  font-weight: bolder;
-}
 /* Footer */
 
-.footer .container{
-  justify-content: space-between;
-  background-color: black;
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   color: white;
   padding: 20px;
 }
