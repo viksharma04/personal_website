@@ -1,3 +1,5 @@
 # personal-website
 
-Making my first website - A minimalistic online front to display current & past projects and other interests 
+A passion project to create an incredible experience for anyone that comes to my website.
+
+An adventure in design, creativity, and learning.
