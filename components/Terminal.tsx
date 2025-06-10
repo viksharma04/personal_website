@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import { Frame } from '@nsmr/pixelart-react';
 import { useRef, useState, useEffect } from 'react';
 
 export default function Terminal() {
@@ -36,20 +38,18 @@ export default function Terminal() {
 
   return (
     <div
-      className="w-[300px] h-[151px] bg-gray-900 border-2 border-gray-900 rounded-[7px] font-terminal flicker scanlines p-1 text-[13px] text-green-500 shadow-[0_0_5px_#00FF00] flex flex-col"
+      className="w-[300px] h-[151px] bg-black  border-1 border-green-500 rounded-[7px] font-terminal flicker scanlines p-1 text-[13px] text-green-500 shadow-[0_0_5px_#00FF00] flex flex-col"
       tabIndex={0}
     >
-      <div>
-        <span className="text-green-500 drop-shadow-[0_0_0.6px_#00FF00]">$</span> <span className='drop-shadow-[0_0_0.6px_#00FF00]'>Welcome to my terminal</span>
+      <div className='flex justify-between'>
+        <span className="text-green-500 drop-shadow-[0_0_0.6px_#00FF00] hover:jitter">
+          $ Welcome to my terminal
+        </span>
+        <Link href={'/about'} className='hover:scale-120 cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00]'>
+          <Frame size={16}/>       
+        </Link>
       </div>
       <div className="flex gap-4 mb-1">
-        <button
-          onClick={() => { if (!isTyping) setDisplayedText(''); }}
-          className="hover:underline cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] bg-transparent border-none p-0"
-          disabled={isTyping}
-        >
-          {'>'} home
-        </button>
         <button
           onClick={() => handleLinkClick('about')}
           className="hover:underline cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] bg-transparent border-none p-0"
