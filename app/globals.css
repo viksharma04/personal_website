@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-terminal: var(--font-vt323);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Scanlines */
+.scanlines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,255,0,0.2) 4px
+  );
+}
+
+/* Filcker animation class */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.94; }
+}
+.flicker {
+  animation: flicker 0.1s infinite;
+}
+
+/* Define the shake-rotate animation */
+/* Hover shake animation class */
+@keyframes shakeRotate {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-3deg);
+  }
+}
+.shake-rotate {
+  display: flex; /* Ensures the icon can transform */
+}
+
+.shake-rotate:hover {
+  animation: shakeRotate 0.4s infinite;
+}
