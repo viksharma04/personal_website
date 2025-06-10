@@ -39,10 +39,19 @@ body {
 /* Filcker animation class */
 @keyframes flicker {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.94; }
+  50% { opacity: 0.90; }
 }
 .flicker {
   animation: flicker 0.1s infinite;
+}
+
+/* Jitter animation class */
+@keyframes jitter {
+  0%, 100% { transform: translateX(-1); }
+  50% { transform: translateX(0); }
+}
+.jitter {
+  animation: jitter 0.3s infinite;
 }
 
 /* Define the shake-rotate animation */
