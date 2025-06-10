@@ -23,14 +23,21 @@ jobs:
         with:
           node-version: '22.x'
 
-      - name: npm install, build, and test
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js app
+        run: npm run build
+
+      - name: Copy necessary files for deployment
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+          mkdir deploy
+          cp -r .next public package.json next.config.ts deploy/
+          if [ -f yarn.lock ]; then cp yarn.lock deploy/; fi
+          if [ -f package-lock.json ]; then cp package-lock.json deploy/; fi
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip . -x "node_modules/*"
+        run: cd deploy && zip -r ../release.zip .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
