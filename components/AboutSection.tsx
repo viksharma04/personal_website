@@ -1,5 +1,6 @@
 'use client';
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef } from 'react';
+import Image from 'next/image';
 
 const AboutSection = () => {
   const [pos, setPos] = useState({ x: 100, y: 100 })
@@ -140,9 +141,11 @@ const AboutSection = () => {
         <div className="flex flex-row items-start px-3 py-6 gap-6">
           {/* Left: Image */}
             <div className="flex-shrink-0 flex items-start w-1/4 aspect-square">
-              <img
+              <Image
               src="/pfp.jfif" // Replace with your image path
               alt="Profile"
+              width={256}
+              height={256}
               className="w-full h-full rounded-full border-2 border-[#0f0] object-cover shadow-lg"
               style={{
                 filter:
@@ -159,7 +162,7 @@ const AboutSection = () => {
             <ul className="text-md md:text-2xl text-[#0f0]">
               <li className="py-2">I design and build AI-driven trading and research tools.</li>
               <li className="py-2">I love combining Python, React, and cloud tech to solve real-world problems.</li>
-              <li className="py-2">I'm passionate about quantitative finance, automation, and open-source projects.</li>
+              <li className="py-2">I&apos;m passionate about quantitative finance, automation, and open-source projects.</li>
               <li className="py-2">I enjoy experimenting with 3D graphics and vintage computer aesthetics in web design.</li>
               <li className="py-2">Always learning, iterating, and sharing ideas with the community.</li>
             </ul>
