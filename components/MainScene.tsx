@@ -67,7 +67,7 @@ export default function MainScene() {
   return (
     <Canvas 
       className="w-full h-screen" 
-      camera={{ position: [0, 0.25, 1.2], fov: 75 }}
+      camera={{ position: [0, 0.33, 1.5], fov: 85 }}
       style={{ background: 'black' }}
     >
       <OrbitControls

@@ -45,7 +45,7 @@ export default function Terminal() {
         <span className="text-green-500 drop-shadow-[0_0_0.6px_#00FF00] hover:jitter">
           $ Welcome to my terminal
         </span>
-        <Link href={'/about'} className='hover:scale-120 cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00]'>
+        <Link href={'/terminal'} className='hover:scale-120 cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00]'>
           <Frame size={16}/>       
         </Link>
       </div>
