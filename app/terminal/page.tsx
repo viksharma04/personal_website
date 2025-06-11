@@ -6,8 +6,8 @@ import React, { useState } from "react";
 
 export default function Terminal() {
   const [showAbout, setShowAbout] = useState(false);
-  const [showProjects, setShowProjects] = useState(true);
-  const [showContact, setShowContact] = useState(true);
+  // const [showProjects, setShowProjects] = useState(true);
+  // const [showContact, setShowContact] = useState(true);
 
   return (
     <main className='bg-black border-2 border-green-500 font-terminal w-full h-screen scanlines p-2'>
@@ -23,14 +23,14 @@ export default function Terminal() {
           <button
             className='text-green-500 drop-shadow-[0_0_0.6px_#00FF00] hover:underline px-4 flicker bg-transparent border-none outline-none'
             style={{ background: "none" }}
-            onClick={() => setShowProjects(v => !v)}
+            // onClick={() => setShowProjects(v => !v)}
           >
             {">"} Projects
           </button>
           <button
             className='text-green-500 drop-shadow-[0_0_0.6px_#00FF00] hover:underline px-4 flicker bg-transparent border-none outline-none'
             style={{ background: "none" }}
-            onClick={() => setShowContact(v => !v)}
+            // onClick={() => setShowContact(v => !v)}
           >
             {">"} Contact
           </button>
