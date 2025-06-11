@@ -18,21 +18,21 @@ export default function Terminal() {
             style={{ background: "none" }}
             onClick={() => setShowAbout(v => !v)}
           >
-            {">"} About
+            {">"} about
           </button>
           <button
             className='text-green-500 drop-shadow-[0_0_0.6px_#00FF00] hover:underline px-4 flicker bg-transparent border-none outline-none'
             style={{ background: "none" }}
             // onClick={() => setShowProjects(v => !v)}
           >
-            {">"} Projects
+            {">"} projects
           </button>
           <button
             className='text-green-500 drop-shadow-[0_0_0.6px_#00FF00] hover:underline px-4 flicker bg-transparent border-none outline-none'
             style={{ background: "none" }}
             // onClick={() => setShowContact(v => !v)}
           >
-            {">"} Contact
+            {">"} contact
           </button>
         </div>
         <Link href={'/'} className='cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] px-4 md:scale-200'>
