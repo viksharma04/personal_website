@@ -99,7 +99,7 @@ const AboutSection = () => {
         border-4 border-[#00ff00] bg-[#222] font-mono
         shadow-[4px_4px_0_#0f0,8px_8px_0_#080]
         w-fit
-        md:w-1/3
+        md:w-1/2
         ${dragging ? 'cursor-grabbing' : ''}
       `}
       style={{
@@ -137,16 +137,34 @@ const AboutSection = () => {
         </button>
       </div>
       {!minimized && (
-        <>
-          <header className="text-xl md:text-3xl p-3 text-[#0f0]">
-            About Me
-          </header>
-          <ul className="text-lg md:text-2xl text-[#0f0] px-5 pb-5">
-            <li className="py-2">I am a human being</li>
-            <li className="py-2">I like to do things</li>
-            <li className="py-2">I built a website</li>
-          </ul>
-        </>
+        <div className="flex flex-row items-start px-3 py-6 gap-6">
+          {/* Left: Image */}
+            <div className="flex-shrink-0 flex items-start w-1/4 aspect-square">
+              <img
+              src="/pfp.jfif" // Replace with your image path
+              alt="Profile"
+              className="w-full h-full rounded-full border-2 border-[#0f0] object-cover shadow-lg"
+              style={{
+                filter:
+                'contrast(1.1) saturate(1.1) sepia(0.15) hue-rotate(-10deg) brightness(1.1) drop-shadow(2px 2px 0 #0f0)',
+                imageRendering: 'pixelated',
+              }}
+              />
+            </div>
+          {/* Right: Text */}
+          <div>
+            <header className="text-xl md:text-3xl text-[#0f0] mb-2">
+              Vik Sharma
+            </header>
+            <ul className="text-md md:text-2xl text-[#0f0]">
+              <li className="py-2">I design and build AI-driven trading and research tools.</li>
+              <li className="py-2">I love combining Python, React, and cloud tech to solve real-world problems.</li>
+              <li className="py-2">I'm passionate about quantitative finance, automation, and open-source projects.</li>
+              <li className="py-2">I enjoy experimenting with 3D graphics and vintage computer aesthetics in web design.</li>
+              <li className="py-2">Always learning, iterating, and sharing ideas with the community.</li>
+            </ul>
+          </div>
+        </div>
       )}
     </div>
   )
