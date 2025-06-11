@@ -23,7 +23,7 @@ export default function Terminal() {
   const streamText = (text: string, idx = 0) => {
     if (idx <= text.length) {
       setDisplayedText(text.slice(0, idx));
-      typingTimeout.current = setTimeout(() => streamText(text, idx + 1), 18);
+      typingTimeout.current = setTimeout(() => streamText(text, idx + 1), 10);
     } else {
       setIsTyping(false);
     }
