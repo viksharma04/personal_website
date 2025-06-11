@@ -101,18 +101,16 @@ const AboutSection = () => {
         shadow-[4px_4px_0_#0f0,8px_8px_0_#080]
         w-fit
         md:w-1/2
-        ${dragging ? 'cursor-grabbing' : ''}
       `}
       style={{
         left: pos.x,
         top: pos.y,
-        cursor: dragging ? 'grabbing' : 'default',
       }}
     >
       <div
         className={`
           bg-[#111] text-[#0f0] px-4 py-2 border-b-2 border-[#00ff00]
-          flex items-center cursor-grab select-none
+          flex items-center ${dragging ? 'cursor-grabbing' : 'cursor-grab'} select-none
         `}
         onMouseDown={onMouseDown}
         onTouchStart={onTouchStart}

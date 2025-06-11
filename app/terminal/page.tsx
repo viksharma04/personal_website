@@ -14,21 +14,21 @@ export default function Terminal() {
       <div className='flex justify-between items-center'>
         <div className='py-6 text-xl md:text-4xl flex'>
           <button
-            className='text-green-500 drop-shadow-[0_0_0.6px_#00FF00] hover:underline px-4 flicker bg-transparent border-none outline-none'
+            className='cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] hover:underline px-4 flicker bg-transparent border-none outline-none'
             style={{ background: "none" }}
             onClick={() => setShowAbout(v => !v)}
           >
             {">"} about
           </button>
           <button
-            className='text-green-500 drop-shadow-[0_0_0.6px_#00FF00] hover:underline px-4 flicker bg-transparent border-none outline-none'
+            className='cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] hover:underline px-4 flicker bg-transparent border-none outline-none'
             style={{ background: "none" }}
             // onClick={() => setShowProjects(v => !v)}
           >
             {">"} projects
           </button>
           <button
-            className='text-green-500 drop-shadow-[0_0_0.6px_#00FF00] hover:underline px-4 flicker bg-transparent border-none outline-none'
+            className='cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] hover:underline px-4 flicker bg-transparent border-none outline-none'
             style={{ background: "none" }}
             // onClick={() => setShowContact(v => !v)}
           >
