@@ -8,9 +8,9 @@ export default function Terminal() {
   const typingTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const predefinedTexts: Record<string, string> = {
-    about: 'Hi, I am JarJarBinkus, a passionate developer who loves building creative web experiences.\n',
-    projects: 'Projects:\n- Personal Website\n- 3D Portfolio\n- Open Source Contributions\n',
-    contact: 'Contact me at: jarjarbinkus@email.com\n',
+    about: "I'm a developer and quantitative trading enthusiast who loves building AI-powered solutions — from systematic trading strategies to cloud-deployed machine learning apps. My projects blend performance-focused Python, React, and cutting-edge financial research with a passion for tech",
+    projects: "Projects: Explore my experiments in algorithmic trading, custom financial libraries, interactive 3D web experiences, and AI-powered assistants. Each project is a blend of code, data, and design — documented and open for feedback or collaboration",
+    contact: 'Contact me at: me@vik-sharma.com\n',
   };
 
   // Clean up timeout on unmount
@@ -45,7 +45,7 @@ export default function Terminal() {
         <span className="text-green-500 drop-shadow-[0_0_0.6px_#00FF00] hover:jitter">
           $ Welcome to my terminal
         </span>
-        <Link href={'/about'} className='hover:scale-120 cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00]'>
+        <Link href={'/terminal'} className='hover:scale-120 cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00]'>
           <Frame size={16}/>       
         </Link>
       </div>
@@ -74,7 +74,7 @@ export default function Terminal() {
       </div>
       <div className="flex-1 flex items-end whitespace-pre-wrap">
         <span className="text-green-500 drop-shadow-[0_0_0.6px_#00FF00]">&gt;</span>
-        <span className="ml-2 text-green-500 drop-shadow-[0_0_0.6px_#00FF00]">
+        <span className="ml-2 text-green-500 drop-shadow-[0_0_0.6px_#00FF00] leading-tight">
           {displayedText}
           {/* {isTyping && <span className="animate-pulse">_</span>} */}
         </span>
