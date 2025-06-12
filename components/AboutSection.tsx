@@ -1,14 +1,8 @@
-import DraggableWindow from './DraggableWindow';
 import Image from 'next/image';
+import React from 'react'
 
-type AboutSectionProps = React.ComponentProps<typeof DraggableWindow>;
-
-const AboutSection: React.FC<AboutSectionProps> = (props) => (
-  <DraggableWindow
-    icon={<span className="bg-[#0f0] text-[#111] rounded w-3 h-3 inline-block mr-2" />}
-    initialPos={{ x: window.innerWidth*0.01, y: window.innerHeight*0.05 }}
-    {...props}
-  >
+const AboutSection = () => {
+  return (
     <div className="flex flex-col md:flex-row items-center md:items-start px-3 py-6 gap-6">
       {/* Left: Image */}
         <div className="flex-shrink-0 flex items-start w-auto aspect-square">
@@ -28,18 +22,18 @@ const AboutSection: React.FC<AboutSectionProps> = (props) => (
       {/* Right: Text */}
       <div className="flex flex-col items-center text-center md:text-start md:items-start w-full">
         <span className='text-xs md:text-sm text-[#0f0]'>
-          Hi, I'm Vik :) <br />
+          Hi, I&apos;m Vik :) <br />
           I work as a technology consultant at EY. <br />
-          I graduated from the University of Illinois with a Master's of Science in Finance. <br />
+          I graduated from the University of Illinois with a Master of Science in Finance. <br />
           <br />
           My interests include, in no particular order: <br />
           - Economics <br />
           - Public equity markets <br />
-          - AI (specifically Artificial Consciousness) <br />
+          - AI (specifically artificial consciousness) <br />
           - Machine learning (specifically quantitative trading) <br />
           - Poker <br />
           - F1 <br />
-          - Assassin's Creed <br />
+          - Assassin&apos;s Creed <br />
           - RPGs in general <br />
           - Web and App development <br />
           - Electronics and IoT <br />
@@ -49,7 +43,7 @@ const AboutSection: React.FC<AboutSectionProps> = (props) => (
         </span>
       </div>
     </div>
-  </DraggableWindow>
-);
+  )
+}
 
-export default AboutSection;
+export default AboutSection

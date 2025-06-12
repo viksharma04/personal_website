@@ -111,7 +111,7 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
         m-10 flex flex-col absolute z-[1000]
         border-4 border-[#00ff00] bg-[#222] font-mono
         shadow-[4px_4px_0_#0f0,8px_8px_0_#080]
-        w-auto md:w-3/4
+        w-3/4 md:w-3/4 lg:w-1/2
       `}
       style={{
         left: pos.x,
