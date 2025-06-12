@@ -7,7 +7,7 @@ import React, { useState } from "react";
 
 export default function Terminal() {
   const [showAbout, setShowAbout] = useState(false);
-  const [showProjects, setShowProjects] = useState(true);
+  const [showProjects, setShowProjects] = useState(false);
 
   // zIndex management
   const [zIndices, setZIndices] = useState<{about: number, projects: number}>({about: 1, projects: 2});
