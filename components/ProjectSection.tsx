@@ -10,7 +10,7 @@ const ProjectSection: React.FC<ProjectSectionProps> = (props) => (
     {...props}
   >
     <div className="flex flex-row items-start px-3 py-6 gap-6">
-      <ul className="text-md md:text-2xl text-[#0f0]">
+      <ul className="text-xs md:text-sm text-[#0f0]">
         <li className="py-2">Got through 8th grade</li>
         <li className="py-2">Stayed alive for 25 years and still going</li>
         <li className="py-2">Went to a college</li>

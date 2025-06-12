@@ -111,7 +111,7 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
         m-10 flex flex-col absolute z-[1000]
         border-4 border-[#00ff00] bg-[#222] font-mono
         shadow-[4px_4px_0_#0f0,8px_8px_0_#080]
-        w-fit md:w-fit
+        w-auto md:w-3/4
       `}
       style={{
         left: pos.x,
@@ -130,7 +130,7 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
         onTouchStart={onTouchStart}
       >
         {icon}
-        <span className="text-sm md:text-lg font-bold tracking-wider flex-1 flicker">{title}</span>
+        <span className="text-xs md:text-md font-bold tracking-wider flex-1 flicker">{title}</span>
         <button
           onClick={e => {
             e.stopPropagation();
