@@ -1,6 +1,7 @@
 'use client';
 import AboutSection from "@/components/AboutSection";
 import ProjectSection from "@/components/ProjectSection";
+import ContactSection from "@/components/ContactSection";
 import Link from "next/link";
 import { CloseBox } from "@nsmr/pixelart-react";
 import React, { useState } from "react";
@@ -8,12 +9,13 @@ import React, { useState } from "react";
 export default function Terminal() {
   const [showAbout, setShowAbout] = useState(false);
   const [showProjects, setShowProjects] = useState(false);
+  const [showContact, setShowContact] = useState(false);
 
   // zIndex management
-  const [zIndices, setZIndices] = useState<{about: number, projects: number}>({about: 1, projects: 2});
+  const [zIndices, setZIndices] = useState<{about: number, projects: number, contact: number}>({about: 1, projects: 2, contact: 3});
   const [zCounter, setZCounter] = useState(3);
 
-  const bringToFront = (section: 'about' | 'projects') => {
+  const bringToFront = (section: 'about' | 'projects' | 'contact') => {
     setZIndices(prev => {
       const newZ = zCounter;
       setZCounter(zCounter + 1);
@@ -45,7 +47,7 @@ export default function Terminal() {
           <button
             className='cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] hover:underline px-4 flicker bg-transparent border-none outline-none'
             style={{ background: "none" }}
-            // onClick={() => setShowContact(v => !v)}
+            onClick={() => setShowContact(v => !v)}
           >
             {">"} contact
           </button>
@@ -56,17 +58,28 @@ export default function Terminal() {
       </div>
       {showAbout && (
         <AboutSection
+          title="ABOUT.EXE"
           zIndex={zIndices.about}
           onFocus={() => bringToFront('about')}
+          children={null}
         />
       )}
       {showProjects && (
         <ProjectSection
+          title="PROJECTS.EXE"
           zIndex={zIndices.projects}
           onFocus={() => bringToFront('projects')}
+          children={null}
         />
       )}
-      {/* {showContact && <ContactSection />} */}
+      {showContact && (
+        <ContactSection
+          title="CONTACT.EXE"
+          zIndex={zIndices.contact}
+          onFocus={() => bringToFront('contact')}
+          children={null}
+        />
+      )}
     </main>
   );
 }
