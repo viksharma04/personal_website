@@ -94,7 +94,13 @@ export default function MainScene() {
         rotation={ [0, 0, 0] }
         center={ true }
         scale={ 0.1 }
-        style={{background: 'black'}}
+        style={{
+          background: 'black',
+          zIndex: 1000,
+          position: 'relative',
+          touchAction: 'auto', // Ensures pointer/touch events work on iOS
+          pointerEvents: 'auto', // Explicitly enable pointer events
+        }}
       >
         <Terminal />
       </Html>
