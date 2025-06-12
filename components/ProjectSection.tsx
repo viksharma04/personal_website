@@ -2,13 +2,13 @@
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 
-interface AboutSectionProps {
+interface ProjectSectionProps {
   zIndex?: number;
   onFocus?: () => void;
 }
 
-const AboutSection: React.FC<AboutSectionProps> = ({ zIndex = 1, onFocus }) => {
-  const [pos, setPos] = useState({ x: 100, y: 100 })
+const AboutSection: React.FC<ProjectSectionProps> = ({ zIndex = 1, onFocus }) => {
+  const [pos, setPos] = useState({ x: 200, y: 200 })
   const [dragging, setDragging] = useState(false)
   const [minimized, setMinimized] = useState(false)
   const dragOffset = useRef({ x: 0, y: 0 })
@@ -126,7 +126,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ zIndex = 1, onFocus }) => {
         <span
           className="bg-[#0f0] text-[#111] rounded w-3 h-3 inline-block mr-2"
         />
-        <span className="text-sm md:text-lg font-bold tracking-wider flex-1 flicker">ABOUT.EXE</span>
+        <span className="text-sm md:text-lg font-bold tracking-wider flex-1 flicker">PROJECTS.EXE</span>
         <button
           onClick={e => {
             e.stopPropagation()
@@ -145,32 +145,12 @@ const AboutSection: React.FC<AboutSectionProps> = ({ zIndex = 1, onFocus }) => {
       </div>
       {!minimized && (
         <div className="flex flex-row items-start px-3 py-6 gap-6">
-          {/* Left: Image */}
-            <div className="flex-shrink-0 flex items-start w-1/4 aspect-square">
-              <Image
-              src="/pfp.jfif" // Replace with your image path
-              alt="Profile"
-              width={256}
-              height={256}
-              className="w-full h-full rounded-full border-2 border-[#0f0] object-cover shadow-lg"
-              style={{
-                filter:
-                'contrast(1.1) saturate(1.1) sepia(0.15) hue-rotate(-10deg) brightness(1.1) drop-shadow(2px 2px 0 #0f0)',
-                imageRendering: 'pixelated',
-              }}
-              />
-            </div>
-          {/* Right: Text */}
           <div>
-            <header className="text-xl md:text-3xl text-[#0f0] mb-2">
-              Vik Sharma
-            </header>
             <ul className="text-md md:text-2xl text-[#0f0]">
-              <li className="py-2">I design and build AI-driven trading and research tools.</li>
-              <li className="py-2">I love combining Python, React, and cloud tech to solve real-world problems.</li>
-              <li className="py-2">I&apos;m passionate about quantitative finance, automation, and open-source projects.</li>
-              <li className="py-2">I enjoy experimenting with 3D graphics and vintage computer aesthetics in web design.</li>
-              <li className="py-2">Always learning, iterating, and sharing ideas with the community.</li>
+              <li className="py-2">Got through 8th grade</li>
+              <li className="py-2">Stayed alive for 25 years and still going</li>
+              <li className="py-2">Went to a college</li>
+              <li className="py-2">And more...</li>
             </ul>
           </div>
         </div>
