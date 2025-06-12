@@ -8,7 +8,7 @@
     "test:chrome": "npx playwright test --headed --browser=chromium",
     "test:firefox": "npx playwright test --headed --browser=firefox",
     "test:safari": "npx playwright test --headed --browser=webkit",
-    "start": "next start",
+    "start": "node_modules/next/dist/bin/next start",
     "lint": "next lint"
   },
   "dependencies": {
