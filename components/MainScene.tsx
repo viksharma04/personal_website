@@ -6,69 +6,86 @@ import ComputerDesk from './3d_models/ComputerDesk';
 import { Html, OrbitControls } from '@react-three/drei';
 import Terminal from './Terminal';
 import BasicKeyboard from './3d_models/BasicKeyboard';
+import Lamp from './3d_models/Lamp';
+
+// LampGlow component: a glowing sphere to simulate the lamp bulb
+const LampGlow = () => (
+    <mesh position={[0.4, 0.32, 0.15]}>
+        <sphereGeometry args={[0.035, 24, 24]} />
+        <meshPhysicalMaterial
+            emissive="#ffffff"
+            emissiveIntensity={5}
+            color="#fffbe6"
+            transparent
+            opacity={1}
+        />
+    </mesh>
+);
 
 // Lights component
 const Lights = () => (
     <>
-        <ambientLight intensity={1} />
+        {/* Warm, low ambient light for overall darkness */}
+        <ambientLight intensity={10} color="#2c1a0b" />
 
+        {/* Desk lamp: warm, focused, cozy */}
         <spotLight
-        position={[-3, 1, 0]}
-        angle={0.5}
-        penumbra={0.5}
-        intensity={30}
-        castShadow
-        color={"#fcfbd7"}
+            position={[0.4, 0.32, 0.15]}
+            angle={0.8}
+            penumbra={0.7}
+            intensity={1.5}
+            castShadow
+            color="#ffdeae"
+            distance={3}
         />
 
-        <spotLight
-        position={[3, 1, 0]}
-        angle={0.5}
-        penumbra={0.5}
-        intensity={30}
-        castShadow
-        color={"#fcfbd7"}
+        {/* Subtle blue rim light for depth */}
+        <directionalLight
+            position={[-2, 1.5, 1.5]}
+            intensity={1.5}
+            color="#3a4a7c"
         />
 
-        <spotLight
-        position={[0, 1, 0]}
-        angle={0.5}
-        penumbra={0.5}
-        intensity={10}
-        castShadow
-        color={"#ffffff"}
+        {/* Gentle fill light from the monitor */}
+        <pointLight
+            position={[0, 0.266, -0.045]}
+            intensity={0.1}
+            color="#00FF00"
+            distance={1.2}
         />
 
-        <spotLight
-        position={[0, 1, 3]}
-        angle={0.8}
-        penumbra={0.5}
-        intensity={20}
-        castShadow
-        color={"#ffffff"}
+        {/* Optional: faint backlight for separation */}
+        <pointLight
+            position={[0, 1.2, -1.5]}
+            intensity={1}
+            color="#a18fff"
+            distance={3}
         />
+
+        {/* Lamp glow mesh */}
+        <LampGlow />
     </>
 );
 
-// Wall component
-type WallProps = {
-    position: [number, number, number];
-    rotation: [number, number, number];
-    color: string;
-};
+// // Wall component
+// type WallProps = {
+//     position: [number, number, number];
+//     rotation: [number, number, number];
+//     color: string;
+// };
 
-const Wall = ({ position, rotation, color }: WallProps) => (
-    <mesh position={position} rotation={rotation}>
-        <boxGeometry args={[10, 5, 0.2]} />
-        <meshStandardMaterial color={color} />
-    </mesh>
-);
+// const Wall = ({ position, rotation, color }: WallProps) => (
+//     <mesh position={position} rotation={rotation}>
+//         <boxGeometry args={[10, 5, 0.2]} />
+//         <meshStandardMaterial color={color} />
+//     </mesh>
+// );
 
 export default function MainScene() {
   return (
     <Canvas 
       className="w-full h-screen" 
-      camera={{ position: [0, 0.33, 1.5], fov: 85 }}
+      camera={{ position: [0, 0.7, 1.5], fov: 75 }}
       style={{ background: 'black' }}
     >
       <OrbitControls
@@ -78,17 +95,18 @@ export default function MainScene() {
       enableZoom={true}
       enableRotate={true}
       target={[0, 0.25, 0]}
-      minPolarAngle={Math.PI / 2 - 0.4}
-      maxPolarAngle={Math.PI / 2 + 0.4}
-      minAzimuthAngle={-1}
-      maxAzimuthAngle={1}
+      minPolarAngle={Math.PI / 2 - 0.25}
+      maxPolarAngle={Math.PI / 2 + 0.25}
+      minAzimuthAngle={-0.25}
+      maxAzimuthAngle={0.25}
       />
       <Lights />
       {/* <Wall position={[0, 0, -5]} rotation={[0, 0, 0]} color={"#f7d5f6"} /> */}
-      <Wall position={[0, -0.9, 0]} rotation={[-Math.PI/2, 0, 0]} color={"#282928"} />
+      {/* <Wall position={[0, -0.9, 0]} rotation={[-Math.PI/2, 0, 0]} color={"#282928"} /> */}
       <ComputerScreen />
       <ComputerDesk />
       <BasicKeyboard />
+      <Lamp />
       <Html
       className='bg-black z-10 relative pointer-events-auto touch-action-auto'
         transform
@@ -102,7 +120,7 @@ export default function MainScene() {
         <Terminal />
       </Html>
       {/* x:red y:green z:blue */}
-      {/* <axesHelper position={[0, 1, -3]}/> */}
+      {/* <axesHelper position={[0.4, 0.32, 0.15]}/> */}
     </Canvas>
   );
 }
