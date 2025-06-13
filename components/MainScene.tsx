@@ -5,6 +5,7 @@ import ComputerScreen from './3d_models/ComputerScreen';
 import ComputerDesk from './3d_models/ComputerDesk';
 import { Html, OrbitControls } from '@react-three/drei';
 import Terminal from './Terminal';
+import BasicKeyboard from './3d_models/BasicKeyboard';
 
 // Lights component
 const Lights = () => (
@@ -77,16 +78,17 @@ export default function MainScene() {
       enableZoom={true}
       enableRotate={true}
       target={[0, 0.25, 0]}
-      minPolarAngle={Math.PI / 2 - 0.2}
-      maxPolarAngle={Math.PI / 2 + 0.2}
-      minAzimuthAngle={-0.2}
-      maxAzimuthAngle={0.2}
+      minPolarAngle={Math.PI / 2 - 0.4}
+      maxPolarAngle={Math.PI / 2 + 0.4}
+      minAzimuthAngle={-1}
+      maxAzimuthAngle={1}
       />
       <Lights />
       {/* <Wall position={[0, 0, -5]} rotation={[0, 0, 0]} color={"#f7d5f6"} /> */}
       <Wall position={[0, -0.9, 0]} rotation={[-Math.PI/2, 0, 0]} color={"#282928"} />
       <ComputerScreen />
       <ComputerDesk />
+      <BasicKeyboard />
       <Html
       className='bg-black z-10 relative pointer-events-auto touch-action-auto'
         transform
