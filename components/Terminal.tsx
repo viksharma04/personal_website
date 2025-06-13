@@ -38,7 +38,7 @@ export default function Terminal() {
 
   return (
     <div
-      className="w-[300px] h-[151px] bg-black  border-1 border-green-500 rounded-[7px] font-terminal flicker scanlines p-1 text-[13px] text-green-500 shadow-[0_0_5px_#00FF00] flex flex-col"
+      className="fix-ios relative w-[300px] h-[151px] bg-black border-1 overflow-hidden border-green-500 rounded-[7px] font-terminal flicker scanlines p-1 text-[13px] text-green-500 shadow-[0_0_5px_#00FF00] grid grid-rows-[auto_auto_1fr] touch-manipulation"
       tabIndex={0}
     >
       <div className='flex justify-between'>
@@ -46,27 +46,30 @@ export default function Terminal() {
           $ Welcome to my terminal
         </span>
         <Link href={'/terminal'} className='hover:scale-120 cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00]'>
-          <Frame size={16}/>       
+          <Frame size={24}/>       
         </Link>
       </div>
       <div className="flex gap-4 mb-1">
         <button
+          onTouchStart={() => handleLinkClick('about')}
           onClick={() => handleLinkClick('about')}
-          className="hover:underline cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] bg-transparent border-none p-0"
+          className="hover:underline cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] bg-black/1 border-none p-0"
           disabled={isTyping}
         >
           {'>'} about
         </button>
         <button
+          onTouchStart={() => handleLinkClick('projects')}
           onClick={() => handleLinkClick('projects')}
-          className="hover:underline cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] bg-transparent border-none p-0"
+          className="hover:underline cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] bg-black/1 border-none p-0"
           disabled={isTyping}
         >
           {'>'} projects
         </button>
         <button
+          onTouchStart={() => handleLinkClick('contact')}
           onClick={() => handleLinkClick('contact')}
-          className="hover:underline cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] bg-transparent border-none p-0"
+          className="hover:underline cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] bg-black/1 border-none p-0"
           disabled={isTyping}
         >
           {'>'} contact
