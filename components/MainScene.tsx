@@ -95,6 +95,7 @@ export default function MainScene() {
         rotation={ [0, 0, 0] }
         center={ true }
         scale={ 0.1 }
+        zIndexRange={[100, 0]}
       >
         <Terminal />
       </Html>
