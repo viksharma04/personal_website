@@ -88,19 +88,13 @@ export default function MainScene() {
       <ComputerScreen />
       <ComputerDesk />
       <Html
+      className='bg-black z-10 relative pointer-events-auto touch-action-auto'
         transform
         occlude="blending"
         position={ [0, 0.266, -0.045] }
         rotation={ [0, 0, 0] }
         center={ true }
         scale={ 0.1 }
-        style={{
-          background: 'black',
-          zIndex: 1000,
-          position: 'relative',
-          touchAction: 'auto', // Ensures pointer/touch events work on iOS
-          pointerEvents: 'auto', // Explicitly enable pointer events
-        }}
       >
         <Terminal />
       </Html>
