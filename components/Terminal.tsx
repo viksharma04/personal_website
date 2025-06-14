@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import { Frame } from '@nsmr/pixelart-react';
 import { useRef, useState, useEffect } from 'react';
@@ -38,7 +39,7 @@ export default function Terminal() {
 
   return (
     <div
-      className="fix-ios relative w-[300px] h-[151px] bg-black border-1 overflow-hidden border-green-500 rounded-[7px] font-terminal flicker scanlines p-1 text-[13px] text-green-500 shadow-[0_0_5px_#00FF00] grid grid-rows-[auto_auto_1fr] touch-manipulation"
+      className="w-[300px] h-[151px] bg-black border-1 overflow-hidden border-green-500 rounded-[7px] font-terminal flicker scanlines p-1 text-[13px] text-green-500 shadow-[0_0_5px_#00FF00] grid grid-rows-[auto_auto_1fr]"
       tabIndex={0}
     >
       <div className='flex justify-between'>
