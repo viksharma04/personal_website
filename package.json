@@ -12,7 +12,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@isaac_ua/drei-html-fix": "^1.0.2",
     "@nsmr/pixelart-react": "^2.0.0",
     "@react-three/drei": "^10.1.2",
     "@react-three/fiber": "^9.1.2",
