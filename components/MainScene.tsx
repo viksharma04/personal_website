@@ -1,6 +1,6 @@
 'use client';
 
-import { Canvas } from '@react-three/fiber';
+import { CanvasWrapper } from '@isaac_ua/drei-html-fix' // import CanvasWrapper
 import ComputerScreen from './3d_models/ComputerScreen';
 import ComputerDesk from './3d_models/ComputerDesk';
 import { Html, OrbitControls } from '@react-three/drei';
@@ -70,10 +70,13 @@ const Lights = () => (
 export default function MainScene() {
   const isIOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
   return (
-    <Canvas 
-      className="w-full h-screen" 
-      camera={{ position: [0, 0.7, 1.5], fov: 75 }}
-      style={{ background: 'black' }}
+    <CanvasWrapper
+      canvasProps={
+        {
+          camera: {position: [0, 0.7, 1.5], fov: 75},
+          style: {background: 'black'}
+        }
+      }
     >
       <OrbitControls
         minDistance={0.5}
@@ -107,6 +110,6 @@ export default function MainScene() {
       <Lamp />
       {/* x:red y:green z:blue */}
       {/* <axesHelper position={[0.4, 0.32, 0.15]}/> */}
-    </Canvas>
+    </CanvasWrapper>
   );
 }
