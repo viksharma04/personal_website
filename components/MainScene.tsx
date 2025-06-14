@@ -68,7 +68,7 @@ const Lights = () => (
 );
 
 export default function MainScene() {
-  const isIOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  
   return (
     <CanvasWrapper
       canvasProps={
