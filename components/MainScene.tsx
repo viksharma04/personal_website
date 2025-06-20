@@ -99,18 +99,8 @@ export default function MainScene() {
   
   return (
     <Canvas
-      className='w-screen'
       camera={{ position: [0, 0.7, 1.5], fov: 75 }}
-      style={{
-      background: 'black',
-      height: isIPhone
-        ? (() => {
-          // Ensure even height for iPhone
-          const h = window?.innerHeight || 0;
-          return `${h % 2 === 0 ? h : h - 1}px`;
-        })()
-        : '100vh'
-      }}
+      style={{ background: 'black' }}
     >
       {/* show this until all async content is loaded */}
       <Suspense
@@ -133,7 +123,7 @@ export default function MainScene() {
         <Html
           className='bg-black z-10 relative pointer-events-auto touch-action-auto'
           transform
-          occlude="blending"
+          occlude={isIPhone ? false : "blending"}
           position={[0, 0.266, -0.045]}
           rotation={[0, 0, 0]}
           center={true}
