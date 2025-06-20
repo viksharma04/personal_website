@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Html, OrbitControls } from '@react-three/drei';
 import ComputerScreen from './3d_models/ComputerScreen';
@@ -96,6 +96,9 @@ export default function MainScene() {
 
   const isIPhone = typeof navigator !== 'undefined' &&
   /iPhone/i.test(navigator.userAgent);
+
+  const [body, setBody] = useState<HTMLElement | null>(null);
+  useEffect(() => { setBody(document.body) }, []);
   
   return (
     <Canvas
@@ -120,19 +123,20 @@ export default function MainScene() {
         />
         <Lights />
         {/* render Terminal via CSS3D on iOS, otherwise use Html overlay */}
-        <Html
-          className='bg-black z-10 relative pointer-events-auto touch-action-auto'
-          transform
-          occlude={isIPhone ? false : "blending"}
-          position={[0, isIPhone? 0.48 : 0.266, isIPhone? -0.02 : -0.045]}
-          rotation={[0, 0, 0]}
-          center={true}
-          scale={0.1}
-          zIndexRange={[100, 0]}
-          style={isIPhone ? { transform: "translateY(-1px)" } : undefined}
-        >
-          <Terminal />
-        </Html>
+        {body &&
+          <Html
+            className='bg-black z-10 relative pointer-events-auto touch-action-auto iphone-debug-html'
+            transform
+            occlude={isIPhone ? false : "blending"}
+            position={[0, isIPhone? 0.44 : 0.266, -0.045]}
+            rotation={[0, 0, 0]}
+            center={true}
+            scale={0.1}
+            zIndexRange={[100, 0]}
+          >
+            <Terminal />
+          </Html>
+        }
         <ComputerScreen />
         <ComputerDesk />
         <BasicKeyboard />
