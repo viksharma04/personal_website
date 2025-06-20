@@ -99,9 +99,18 @@ export default function MainScene() {
   
   return (
     <Canvas
-      className='w-full h-screen'
-      camera={{position: [0, 0.7, 1.5], fov:75}}
-      style={{background: 'black'}}
+      className='w-screen'
+      camera={{ position: [0, 0.7, 1.5], fov: 75 }}
+      style={{
+      background: 'black',
+      height: isIPhone
+        ? (() => {
+          // Ensure even height for iPhone
+          const h = window?.innerHeight || 0;
+          return `${h % 2 === 0 ? h : h - 1}px`;
+        })()
+        : '100vh'
+      }}
     >
       {/* show this until all async content is loaded */}
       <Suspense
