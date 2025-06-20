@@ -102,6 +102,7 @@ export default function MainScene() {
   
   return (
     <Canvas
+      className={ isIPhone ? 'canvas-behind' : ''}
       camera={{ position: [0, 0.7, 1.5], fov: 75 }}
       style={{ background: 'black' }}
     >
@@ -125,7 +126,7 @@ export default function MainScene() {
         {/* render Terminal via CSS3D on iOS, otherwise use Html overlay */}
         {body &&
           <Html
-            className='bg-black z-10 relative pointer-events-auto touch-action-auto iphone-debug-html'
+            className='bg-black z-10 relative pointer-events-auto touch-action-auto'
             transform
             occlude={isIPhone ? false : "blending"}
             position={[0, isIPhone? 0.44 : 0.266, -0.045]}

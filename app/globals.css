@@ -38,8 +38,9 @@ body {
   box-sizing: border-box;
 }
 
-.iphone-debug-html {
-  border: 2px solid hotpink !important;
+.canvas-behind {
+  pointer-events: none;
+  touch-action: none;
 }
 
 /* Scanlines */
