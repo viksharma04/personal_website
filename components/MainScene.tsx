@@ -134,7 +134,7 @@ export default function MainScene() {
           className='bg-black z-10 relative pointer-events-auto touch-action-auto'
           transform
           occlude="blending"
-          position={[0, isIPhone ? 0.44 : 0.266, isIPhone ? 0: -0.045]}
+          position={[0, 0.266, -0.045]}
           rotation={[0, 0, 0]}
           center={true}
           scale={0.1}
