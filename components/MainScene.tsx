@@ -8,6 +8,7 @@ import ComputerDesk from './3d_models/ComputerDesk';
 import Terminal from './Terminal';
 import BasicKeyboard from './3d_models/BasicKeyboard';
 import Lamp from './3d_models/Lamp';
+import { transform } from 'next/dist/build/swc/generated-native';
 
 // LampGlow component: a glowing sphere to simulate the lamp bulb
 const LampGlow = () => (
@@ -124,11 +125,12 @@ export default function MainScene() {
           className='bg-black z-10 relative pointer-events-auto touch-action-auto'
           transform
           occlude={isIPhone ? false : "blending"}
-          position={[0, 0.266, -0.045]}
+          position={[0, isIPhone? 0.48 : 0.266, isIPhone? -0.02 : -0.045]}
           rotation={[0, 0, 0]}
           center={true}
           scale={0.1}
           zIndexRange={[100, 0]}
+          style={isIPhone ? { transform: "translateY(-1px)" } : undefined}
         >
           <Terminal />
         </Html>
