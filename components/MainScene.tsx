@@ -99,9 +99,18 @@ export default function MainScene() {
   
   return (
     <Canvas
-      className='w-full h-screen'
-      camera={{position: [0, 0.7, 1.5], fov:75}}
-      style={{background: 'black'}}
+      className='w-screen'
+      camera={{ position: [0, 0.7, 1.5], fov: 75 }}
+      style={{
+      background: 'black',
+      height: isIPhone
+        ? (() => {
+          // Ensure even height for iPhone
+          const h = window?.innerHeight || 0;
+          return `${h % 2 === 0 ? h : h - 1}px`;
+        })()
+        : '100vh'
+      }}
     >
       {/* show this until all async content is loaded */}
       <Suspense
@@ -125,7 +134,7 @@ export default function MainScene() {
           className='bg-black z-10 relative pointer-events-auto touch-action-auto'
           transform
           occlude="blending"
-          position={[0, isIPhone ? 0.44 : 0.266, isIPhone ? 0: -0.045]}
+          position={[0, 0.266, -0.045]}
           rotation={[0, 0, 0]}
           center={true}
           scale={0.1}
