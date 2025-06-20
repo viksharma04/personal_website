@@ -8,7 +8,6 @@ import ComputerDesk from './3d_models/ComputerDesk';
 import Terminal from './Terminal';
 import BasicKeyboard from './3d_models/BasicKeyboard';
 import Lamp from './3d_models/Lamp';
-import { transform } from 'next/dist/build/swc/generated-native';
 
 // LampGlow component: a glowing sphere to simulate the lamp bulb
 const LampGlow = () => (
