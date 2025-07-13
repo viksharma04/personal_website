@@ -128,10 +128,26 @@ export default function CardsPage() {
   const [hiddenCards, setHiddenCards] = useState<Set<string>>(new Set());
   const [isInRoom, setIsInRoom] = useState(false);
 
-  // Initialize player name
+  // Initialize player name and fix scrolling
   useEffect(() => {
     const savedName = loadPlayerName(playerId);
     setPlayerName(savedName);
+    
+    // Override global CSS to allow scrolling
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalBodyHeight = document.body.style.height;
+    
+    document.documentElement.style.overflow = 'auto';
+    document.body.style.overflow = 'auto';
+    document.body.style.height = 'auto';
+    
+    return () => {
+      // Restore original styles when component unmounts
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.overflow = originalBodyOverflow;
+      document.body.style.height = originalBodyHeight;
+    };
   }, [playerId]);
 
   const createRoom = () => {
@@ -329,7 +345,7 @@ export default function CardsPage() {
   // Show room selection if not in a room
   if (!isInRoom || !sharedSession) {
     return (
-      <div className="min-h-screen bg-gray-900 text-white p-8">
+      <div className="min-h-screen bg-gray-900 text-white p-4 sm:p-8">
         <div className="max-w-2xl mx-auto">
           <h1 className="text-4xl font-bold text-center mb-8">Card Drawer - Multiplayer</h1>
           
@@ -402,11 +418,11 @@ export default function CardsPage() {
   const playerList = Object.values(sharedSession.players);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-8">
+    <div className="min-h-screen bg-gray-900 text-white p-4 sm:p-8">
       <div className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold">Card Drawer</h1>
-          <div className="text-right">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
+          <h1 className="text-3xl sm:text-4xl font-bold">Card Drawer</h1>
+          <div className="text-center sm:text-right">
             <div className="text-lg font-bold">Room: {roomCode}</div>
             <div className="text-sm text-gray-400">
               Last updated: {new Date(sharedSession.lastUpdated).toLocaleTimeString()}
@@ -416,8 +432,8 @@ export default function CardsPage() {
         
         {/* Session Info */}
         <div className="text-center mb-8">
-          <p className="text-xl mb-2">Cards remaining in deck: {sharedSession.deck.length}/100</p>
-          <div className="flex justify-center gap-4 text-sm">
+          <p className="text-lg sm:text-xl mb-2">Cards remaining in deck: {sharedSession.deck.length}/100</p>
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 text-sm">
             {playerList.map(player => (
               <span key={player.id} className={player.id === playerId ? 'text-blue-400 font-bold' : 'text-gray-400'}>
                 {player.name}: {player.stack.length} cards
@@ -427,39 +443,39 @@ export default function CardsPage() {
         </div>
 
         {/* Controls */}
-        <div className="text-center mb-8">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
           <button
             onClick={drawCard}
             disabled={isDrawing}
-            className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold py-3 px-8 rounded-lg text-xl transition-colors"
+            className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-lg text-lg sm:text-xl transition-colors"
           >
             {isDrawing ? 'Drawing...' : 'Draw Card'}
           </button>
           
           <button
             onClick={() => setShowStack(!showStack)}
-            className="ml-4 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg text-xl transition-colors"
+            className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-lg text-lg sm:text-xl transition-colors"
           >
             {showStack ? 'Hide Stack' : 'Show Stack'}
           </button>
           
           <button
             onClick={refreshSession}
-            className="ml-4 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg text-xl transition-colors"
+            className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-lg text-lg sm:text-xl transition-colors"
           >
             🔄 Refresh
           </button>
           
           <button
             onClick={resetSession}
-            className="ml-4 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-lg text-xl transition-colors"
+            className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-lg text-lg sm:text-xl transition-colors"
           >
             Reset Deck
           </button>
           
           <button
             onClick={leaveRoom}
-            className="ml-4 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg text-xl transition-colors"
+            className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-8 rounded-lg text-lg sm:text-xl transition-colors"
           >
             Leave Room
           </button>
