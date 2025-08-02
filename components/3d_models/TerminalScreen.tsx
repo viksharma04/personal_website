@@ -1,6 +1,6 @@
 'use client';
 import { useRef } from 'react';
-import { Mesh, CanvasTexture, RepeatWrapping } from 'three';
+import { Mesh, CanvasTexture, RepeatWrapping, MeshBasicMaterial } from 'three';
 import { useFrame } from '@react-three/fiber';
 
 function createTerminalTexture(flickerIntensity = 1): CanvasTexture {
@@ -62,7 +62,7 @@ function createTerminalTexture(flickerIntensity = 1): CanvasTexture {
 
 export default function TerminalScreen() {
   const meshRef = useRef<Mesh>(null);
-  const textureRef = useRef<CanvasTexture>();
+  const textureRef = useRef<CanvasTexture | null>(null);
   
   // Initialize texture
   if (!textureRef.current) {
@@ -79,7 +79,7 @@ export default function TerminalScreen() {
       
       // Update texture with new flicker intensity
       const newTexture = createTerminalTexture(flickerIntensity);
-      const material = meshRef.current.material as any;
+      const material = meshRef.current.material as MeshBasicMaterial;
       material.map = newTexture;
       material.needsUpdate = true;
       
