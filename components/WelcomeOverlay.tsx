@@ -49,7 +49,7 @@ const WelcomeOverlay: React.FC<WelcomeOverlayProps> = ({ isVisible, onClose }) =
               Welcome to my website.
             </p>
             <p className="text-sm leading-relaxed">
-              You're about to enter a 3D experience - feel free to look around and try clicking on objects.
+              You&apos;re about to enter a 3D experience - feel free to look around and try clicking on objects.
             </p>
           </div>
           
