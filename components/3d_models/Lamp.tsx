@@ -6,7 +6,7 @@ function Model3D() {
     const { scene } = useGLTF('/models/desk_lamp.glb');
     const { toggleLamp } = useLamp();
 
-    const handleClick = (e: any) => {
+    const handleClick = (e: React.MouseEvent) => {
         e.stopPropagation();
         toggleLamp();
     };
