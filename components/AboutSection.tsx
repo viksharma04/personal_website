@@ -21,7 +21,7 @@ const AboutSection = () => {
       {/* Left: Image */}
       <div className="flex-shrink-0 flex items-start">
         <Image
-          src="/pfp.jfif"
+          src="/pfp.jpg"
           alt="Profile"
           width={dimensions.width}
           height={dimensions.height}
@@ -30,6 +30,11 @@ const AboutSection = () => {
             filter:
               'contrast(1.1) saturate(1.1) sepia(0.15) hue-rotate(-10deg) brightness(1.1) drop-shadow(2px 2px 0 #0f0)',
             imageRendering: 'pixelated',
+          }}
+          priority
+          unoptimized
+          onError={(e) => {
+            console.error('Image failed to load:', e);
           }}
         />
       </div>
