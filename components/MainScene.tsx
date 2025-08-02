@@ -1,11 +1,10 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Html, OrbitControls } from '@react-three/drei';
 import ComputerScreen from './3d_models/ComputerScreen';
 import ComputerDesk from './3d_models/ComputerDesk';
-import Terminal from './Terminal';
 import BasicKeyboard from './3d_models/BasicKeyboard';
 import Lamp from './3d_models/Lamp';
 
@@ -34,7 +33,7 @@ const Lights = () => (
             position={[0.4, 0.32, 0.15]}
             angle={0.8}
             penumbra={0.7}
-            intensity={1.5}
+            intensity={2}
             castShadow
             color="#ffdeae"
             distance={3}
@@ -43,14 +42,14 @@ const Lights = () => (
         {/* Subtle blue rim light for depth */}
         <directionalLight
             position={[-2, 1.5, 1.5]}
-            intensity={1.5}
+            intensity={2}
             color="#3a4a7c"
         />
 
         {/* Gentle fill light from the monitor */}
         <pointLight
             position={[0, 0.266, -0.045]}
-            intensity={0.1}
+            intensity={0.2}
             color="#00FF00"
             distance={1.2}
         />
@@ -93,16 +92,9 @@ const Loader = () => (
 );
 
 export default function MainScene() {
-
-  const isIPhone = typeof navigator !== 'undefined' &&
-  /iPhone/i.test(navigator.userAgent);
-
-  const [body, setBody] = useState<HTMLElement | null>(null);
-  useEffect(() => { setBody(document.body) }, []);
   
   return (
     <Canvas
-      className={ isIPhone ? 'canvas-behind' : ''}
       camera={{ position: [0, 0.7, 1.5], fov: 75 }}
       style={{ background: 'black' }}
     >
@@ -123,21 +115,6 @@ export default function MainScene() {
           maxAzimuthAngle={0.25}
         />
         <Lights />
-        {/* render Terminal via CSS3D on iOS, otherwise use Html overlay */}
-        {body &&
-          <Html
-            className='bg-black z-10 relative pointer-events-auto touch-action-auto'
-            transform
-            occlude={isIPhone ? false : "blending"}
-            position={[0, isIPhone? 0.44 : 0.266, -0.045]}
-            rotation={[0, 0, 0]}
-            center={true}
-            scale={0.1}
-            zIndexRange={[100, 0]}
-          >
-            <Terminal />
-          </Html>
-        }
         <ComputerScreen />
         <ComputerDesk />
         <BasicKeyboard />

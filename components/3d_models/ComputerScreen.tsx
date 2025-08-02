@@ -1,5 +1,6 @@
 'use client';
 import { useGLTF } from '@react-three/drei';
+import TerminalScreen from './TerminalScreen';
 
 function Model3D() {
     const { scene } = useGLTF('/models/computer_screen.glb');
@@ -20,6 +21,7 @@ export default function ComputerScreen() {
     return(
         <>
             <Model3D />
+            <TerminalScreen />
         </>
     )
 }
