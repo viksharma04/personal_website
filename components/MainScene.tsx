@@ -23,49 +23,57 @@ const LampGlow = () => (
 );
 
 // Lights component
-const Lights = () => (
-    <>
-        {/* Warm, low ambient light for overall darkness */}
-        <ambientLight intensity={10} color="#2c1a0b" />
+const Lights = () => {
+    // Detect if device is iPhone
+    const isIPhone = typeof navigator !== 'undefined' && /iPhone/i.test(navigator.userAgent);
+    
+    // Increase fill light intensities for iPhone
+    const fillLightMultiplier = isIPhone ? 1.5 : 1;
+    
+    return (
+        <>
+            {/* Warm, low ambient light for overall darkness */}
+            <ambientLight intensity={10} color="#2c1a0b" />
 
-        {/* Desk lamp: warm, focused, cozy */}
-        <spotLight
-            position={[0.4, 0.32, 0.15]}
-            angle={0.8}
-            penumbra={0.7}
-            intensity={2}
-            castShadow
-            color="#ffdeae"
-            distance={3}
-        />
+            {/* Desk lamp: warm, focused, cozy */}
+            <spotLight
+                position={[0.4, 0.32, 0.15]}
+                angle={0.8}
+                penumbra={0.7}
+                intensity={2}
+                castShadow
+                color="#ffdeae"
+                distance={3}
+            />
 
-        {/* Subtle blue rim light for depth */}
-        <directionalLight
-            position={[-2, 1.5, 1.5]}
-            intensity={2}
-            color="#3a4a7c"
-        />
+            {/* Subtle blue rim light for depth - increased for iPhone */}
+            <directionalLight
+                position={[-2, 1.5, 1.5]}
+                intensity={2 * fillLightMultiplier}
+                color="#3a4a7c"
+            />
 
-        {/* Gentle fill light from the monitor */}
-        <pointLight
-            position={[0, 0.266, -0.045]}
-            intensity={0.2}
-            color="#00FF00"
-            distance={1.2}
-        />
+            {/* Gentle fill light from the monitor - increased for iPhone */}
+            <pointLight
+                position={[0, 0.266, -0.045]}
+                intensity={0.2 * fillLightMultiplier}
+                color="#00FF00"
+                distance={1.2}
+            />
 
-        {/* Optional: faint backlight for separation */}
-        <pointLight
-            position={[0, 1.2, -1.5]}
-            intensity={1}
-            color="#a18fff"
-            distance={3}
-        />
+            {/* Optional: faint backlight for separation - increased for iPhone */}
+            <pointLight
+                position={[0, 1.2, -1.5]}
+                intensity={1 * fillLightMultiplier}
+                color="#a18fff"
+                distance={3}
+            />
 
-        {/* Lamp glow mesh */}
-        <LampGlow />
-    </>
-);
+            {/* Lamp glow mesh */}
+            <LampGlow />
+        </>
+    );
+};
 
 // Updated: add spinner to Loader
 const Loader = () => (

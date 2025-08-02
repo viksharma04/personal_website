@@ -73,7 +73,7 @@ export default function Terminal() {
           zIndex={zIndices.about}
           onFocus={() => bringToFront('about')}
           icon={<span className="bg-[#0f0] text-[#111] rounded w-3 h-3 inline-block mr-2" />}
-          initialPos={{ x: window.innerWidth*0.02, y: window.innerHeight*0.1 }}
+          initialPos={{ x: 20, y: 80 }}
         >
           <AboutSection/>
         </DraggableWindow>
@@ -84,7 +84,7 @@ export default function Terminal() {
           zIndex={zIndices.projects}
           onFocus={() => bringToFront('projects')}
           icon={<span className="bg-[#0f0] text-[#111] rounded w-3 h-3 inline-block mr-2" />}
-          initialPos={{ x: window.innerWidth*0.1, y: window.innerHeight*0.2 }}
+          initialPos={{ x: 60, y: 120 }}
         >
           <ProjectSection/>
         </DraggableWindow>
@@ -95,7 +95,7 @@ export default function Terminal() {
           zIndex={zIndices.contact}
           onFocus={() => bringToFront('contact')}
           icon={<span className="bg-[#0f0] text-[#111] rounded w-3 h-3 inline-block mr-2" />}
-          initialPos={{ x: window.innerWidth*0.05, y: window.innerHeight*0.4 }}
+          initialPos={{ x: 100, y: 160 }}
         >
           <ContactSection/>
         </DraggableWindow>

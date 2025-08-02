@@ -4,8 +4,6 @@ import React, { useState, useRef, useEffect } from 'react';
 interface DraggableWindowProps {
   zIndex?: number;
   title: string;
-  minimizedLabel?: string;
-  restoredLabel?: string;
   initialPos?: { x: number; y: number };
   children: React.ReactNode;
   icon?: React.ReactNode;
@@ -15,8 +13,6 @@ interface DraggableWindowProps {
 const DraggableWindow: React.FC<DraggableWindowProps> = ({
   zIndex = 1,
   title,
-  minimizedLabel = '–',
-  restoredLabel = '▢',
   initialPos = { x: 100, y: 100 },
   children,
   icon,
@@ -24,7 +20,6 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
 }) => {
   const [pos, setPos] = useState(initialPos);
   const [dragging, setDragging] = useState(false);
-  const [minimized, setMinimized] = useState(false);
   const dragOffset = useRef({ x: 0, y: 0 });
   const boxRef = useRef<HTMLDivElement>(null);
 
@@ -108,10 +103,16 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
     <div
       ref={boxRef}
       className={`
-        m-10 flex flex-col absolute z-[1000]
+        flex flex-col absolute z-[1000]
         border-4 border-[#00ff00] bg-[#222] font-mono
         shadow-[4px_4px_0_#0f0,8px_8px_0_#080]
-        w-3/4 md:w-3/4 lg:w-1/2
+        w-[90vw] h-[70vh] 
+        sm:w-[80vw] sm:h-[65vh]
+        md:w-[70vw] md:h-[60vh]
+        lg:w-[50vw] lg:h-[55vh]
+        xl:w-[40vw] xl:h-[50vh]
+        max-w-[600px] max-h-[500px]
+        min-w-[280px] min-h-[200px]
       `}
       style={{
         left: pos.x,
@@ -131,23 +132,10 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({
       >
         {icon}
         <span className="text-xs md:text-md font-bold tracking-wider flex-1 flicker">{title}</span>
-        <button
-          onClick={e => {
-            e.stopPropagation();
-            setMinimized(m => !m);
-          }}
-          className={`
-            bg-[#222] border border-[#0f0] text-[#0f0]
-            w-5 h-5 text-xs ml-2 cursor-pointer rounded
-            flex items-center justify-center p-0
-          `}
-          aria-label={minimized ? 'Restore' : 'Minimize'}
-          tabIndex={0}
-        >
-          {minimized ? restoredLabel : minimizedLabel}
-        </button>
       </div>
-      {!minimized && children}
+      <div className="flex-1 overflow-hidden">
+        {children}
+      </div>
     </div>
   );
 };
