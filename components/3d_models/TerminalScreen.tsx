@@ -1,16 +1,17 @@
 'use client';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Mesh, CanvasTexture, RepeatWrapping, MeshBasicMaterial } from 'three';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, ThreeEvent } from '@react-three/fiber';
+import { useRouter } from 'next/navigation';
 
-function createTerminalTexture(flickerIntensity = 1): CanvasTexture {
+function createTerminalTexture(flickerIntensity = 1, showBorder = false): CanvasTexture {
   const canvas = document.createElement('canvas');
   canvas.width = 512;
   canvas.height = 384;
   const ctx = canvas.getContext('2d')!;
   
   // Dark green background (not pure black)
-  ctx.fillStyle = '#010300';
+  ctx.fillStyle = '#010200';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
   // Add noise for vintage CRT effect
@@ -52,6 +53,13 @@ function createTerminalTexture(flickerIntensity = 1): CanvasTexture {
     ctx.fillText(line, 10, 20 + index * 16);
   });
   
+  // Add white border on hover
+  if (showBorder) {
+    ctx.strokeStyle = `rgba(0, 255, 0, 0.5)`;
+    ctx.lineWidth = 8;
+    ctx.strokeRect(2, 2, canvas.width - 4, canvas.height - 4);
+  }
+  
   const texture = new CanvasTexture(canvas);
   texture.wrapS = RepeatWrapping;
   texture.wrapT = RepeatWrapping;
@@ -63,11 +71,30 @@ function createTerminalTexture(flickerIntensity = 1): CanvasTexture {
 export default function TerminalScreen() {
   const meshRef = useRef<Mesh>(null);
   const textureRef = useRef<CanvasTexture | null>(null);
+  const [hovered, setHovered] = useState(false);
+  const router = useRouter();
   
   // Initialize texture
   if (!textureRef.current) {
     textureRef.current = createTerminalTexture();
   }
+  
+  const handleClick = (event: ThreeEvent<MouseEvent>) => {
+    event.stopPropagation();
+    router.push('/terminal');
+  };
+  
+  const handlePointerOver = (event: ThreeEvent<PointerEvent>) => {
+    event.stopPropagation();
+    setHovered(true);
+    document.body.style.cursor = 'pointer';
+  };
+  
+  const handlePointerOut = (event: ThreeEvent<PointerEvent>) => {
+    event.stopPropagation();
+    setHovered(false);
+    document.body.style.cursor = 'auto';
+  };
   
   // Add flickering animation
   useFrame((state) => {
@@ -77,8 +104,8 @@ export default function TerminalScreen() {
       const randomFlicker = Math.random() * 0.3;
       const flickerIntensity = flickerBase + randomFlicker;
       
-      // Update texture with new flicker intensity
-      const newTexture = createTerminalTexture(flickerIntensity);
+      // Update texture with new flicker intensity and border
+      const newTexture = createTerminalTexture(flickerIntensity, hovered);
       const material = meshRef.current.material as MeshBasicMaterial;
       material.map = newTexture;
       material.needsUpdate = true;
@@ -94,9 +121,12 @@ export default function TerminalScreen() {
   return (
     <mesh
       ref={meshRef}
-      position={[0, 0.266, -0.045]} // Position on the monitor screen (adjusted to match monitor light position)
+      position={[0, 0.266, -0.042]} // Position on the monitor screen (adjusted to match monitor light position)
       rotation={[0, 0, 0]}
-      scale={[0.75, 0.51, 1]} // Scaled 3x larger for better visibility
+      scale={[0.75, 0.505, 1]} // Scaled 3x larger for better visibility
+      onClick={handleClick}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
     >
       <planeGeometry args={[1, 0.75]} />
       <meshBasicMaterial
