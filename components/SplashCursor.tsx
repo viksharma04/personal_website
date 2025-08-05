@@ -892,6 +892,11 @@ export default function SplashCursor({
       const filtering = ext.supportLinearFiltering ? gl.LINEAR : gl.NEAREST;
       gl.disable(gl.BLEND);
 
+      if (!rgba || !rg || !r) {
+        console.error('Required texture formats not supported');
+        return;
+      }
+
       if (!dye) {
         dye = createDoubleFBO(
           dyeRes.width,
