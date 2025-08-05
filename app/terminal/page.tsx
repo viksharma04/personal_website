@@ -3,6 +3,7 @@ import AboutSection from "@/components/AboutSection";
 import ProjectSection from "@/components/ProjectSection";
 import ContactSection from "@/components/ContactSection";
 import DraggableWindow from '@/components/DraggableWindow';
+import SplashCursor from '@/components/SplashCursor'
 
 import Link from "next/link";
 import { CloseBox } from "@nsmr/pixelart-react";
@@ -100,6 +101,7 @@ export default function Terminal() {
           <ContactSection/>
         </DraggableWindow>
       )}
+      <SplashCursor />
     </main>
   );
 }

@@ -16,6 +16,7 @@ interface TextPressureProps {
     strokeWidth?: number;
     className?: string;
     minFontSize?: number;
+    maxFontSize?: number;
 }
 
 const TextPressure: React.FC<TextPressureProps> = ({
@@ -34,6 +35,7 @@ const TextPressure: React.FC<TextPressureProps> = ({
     strokeWidth = 2,
     className = '',
     minFontSize = 24,
+    maxFontSize = 200,
 }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const titleRef = useRef<HTMLHeadingElement | null>(null);
@@ -87,9 +89,12 @@ const TextPressure: React.FC<TextPressureProps> = ({
 
         const { width: containerW, height: containerH } = containerRef.current.getBoundingClientRect();
 
+        // Calculate initial font size based on width
         let newFontSize = containerW / (chars.length / 2);
         newFontSize = Math.max(newFontSize, minFontSize);
+        newFontSize = Math.min(newFontSize, maxFontSize);
 
+        // Apply initial font size to measure text height
         setFontSize(newFontSize);
         setScaleY(1);
         setLineHeight(1);
@@ -98,10 +103,20 @@ const TextPressure: React.FC<TextPressureProps> = ({
             if (!titleRef.current) return;
             const textRect = titleRef.current.getBoundingClientRect();
 
-            if (scale && textRect.height > 0) {
-                const yRatio = containerH / textRect.height;
-                setScaleY(yRatio);
-                setLineHeight(yRatio);
+            // Always check if text fits within height, regardless of scale prop
+            if (textRect.height > containerH && containerH > 0) {
+                // If text overflows height, adjust font size to fit
+                const heightRatio = containerH / textRect.height;
+                const adjustedFontSize = Math.max(newFontSize * heightRatio * 0.9, minFontSize); // 0.9 for padding
+                
+                if (scale) {
+                    // Use scaling transform if scale is enabled
+                    setScaleY(heightRatio * 0.9);
+                    setLineHeight(heightRatio * 0.9);
+                } else {
+                    // Otherwise, reduce font size
+                    setFontSize(adjustedFontSize);
+                }
             }
         });
     };
