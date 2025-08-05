@@ -131,7 +131,7 @@ export default function SplashCursor({
       const isWebGL2 = "drawBuffers" in gl;
 
       let supportLinearFiltering = false;
-      let halfFloat = null;
+      let halfFloat: OES_texture_half_float | null = null;
 
       if (isWebGL2) {
         (gl as WebGL2RenderingContext).getExtension("EXT_color_buffer_float");
@@ -149,7 +149,7 @@ export default function SplashCursor({
 
       const halfFloatTexType = isWebGL2
         ? (gl as WebGL2RenderingContext).HALF_FLOAT
-        : (halfFloat && (halfFloat as any).HALF_FLOAT_OES) || 0;
+        : (halfFloat && halfFloat.HALF_FLOAT_OES) || 0;
 
       let formatRGBA: { internalFormat: number; format: number } | null;
       let formatRG: { internalFormat: number; format: number } | null;
