@@ -1,12 +1,14 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Html, OrbitControls } from '@react-three/drei';
+import { SpotLight, SpotLightHelper } from 'three';
+import { Html, OrbitControls, useHelper } from '@react-three/drei';
 import ComputerScreen from './3d_models/ComputerScreen';
 import ComputerDesk from './3d_models/ComputerDesk';
 import BasicKeyboard from './3d_models/BasicKeyboard';
 import Lamp from './3d_models/Lamp';
+import SecondLamp from './3d_models/SecondLamp';
 import { LampProvider, useLamp } from './LampContext';
 
 // LampGlow component: a glowing sphere to simulate the lamp bulb
@@ -27,9 +29,47 @@ const LampGlow = () => {
     );
 };
 
+// SecondLampGlow component: a glowing sphere for the second lamp
+const SecondLampGlow = () => {
+    const { isSecondLampOn } = useLamp();
+    
+    return (
+        <mesh position={[-0.75 , 0.35, -0.9]}>
+            <sphereGeometry args={[0.035, 24, 24]} />
+            <meshPhysicalMaterial
+                emissive={isSecondLampOn ? "#ffffff" : "#000000"}
+                emissiveIntensity={isSecondLampOn ? 5 : 0}
+                color={isSecondLampOn ? "#fffbe6" : "#333333"}
+                transparent
+                opacity={isSecondLampOn ? 1 : 0.3}
+            />
+        </mesh>
+    );
+};
+
+// SecondSpotLight component with helper
+const SecondSpotLight = () => {
+    const spotLightRef = useRef<SpotLight>(null);
+    // useHelper(spotLightRef as any, SpotLightHelper, 'cyan');
+    
+    return (
+      <spotLight
+        ref={spotLightRef}
+        position={[-0.76 , 0.32, -0.9]}
+        target-position={[0, -0.7 , 0]} // Aims at origin, change these coordinates to aim elsewhere
+        angle={0.4}
+        penumbra={0.7}
+        intensity={1}
+        castShadow
+        color="#ffdeae"
+        distance={3}
+      />
+    );
+};
+
 // Lights component
 const Lights = () => {
-    const { isLampOn } = useLamp();
+    const { isLampOn, isSecondLampOn } = useLamp();
     
     // Detect if device is iPhone
     const isIPhone = typeof navigator !== 'undefined' && /iPhone/i.test(navigator.userAgent);
@@ -40,8 +80,9 @@ const Lights = () => {
     return (
         <>
             {/* Warm, low ambient light for overall darkness */}
-            <ambientLight intensity={isLampOn ? 10 : 15} color="#2c1a0b" />
-
+            <ambientLight intensity={isLampOn ? 5 : 10} color="#2c1a0b" />
+            <ambientLight intensity={isSecondLampOn ? 0 : 5} color="#2c1a0b" />
+            
             {/* Desk lamp: warm, focused, cozy - only when lamp is on */}
             {isLampOn && (
                 <spotLight
@@ -54,7 +95,7 @@ const Lights = () => {
                     distance={3}
                 />
             )}
-
+            
             {/* Subtle blue rim light for depth - increased for iPhone */}
             <directionalLight
                 position={[-2, 1.5, 1.5]}
@@ -78,8 +119,14 @@ const Lights = () => {
                 distance={3}
             />
 
-            {/* Lamp glow mesh */}
+            {/* Second lamp: cool, focused light - only when second lamp is on */}
+            {isSecondLampOn && (
+                <SecondSpotLight />
+            )}
+
+            {/* Lamp glow meshes */}
             <LampGlow />
+            <SecondLampGlow />
         </>
     );
 };
@@ -118,16 +165,18 @@ const SceneContent = () => (
       enableZoom={true}
       enableRotate={true}
       target={[0, 0.25, 0]}
-      minPolarAngle={Math.PI / 2 - 0.25}
-      maxPolarAngle={Math.PI / 2 + 0.25}
-      minAzimuthAngle={-0.25}
-      maxAzimuthAngle={0.25}
+      minPolarAngle={Math.PI / 2 - 0.30}
+      maxPolarAngle={Math.PI / 2 + 0.30}
+      minAzimuthAngle={-0.75}
+      maxAzimuthAngle={0.75}
     />
     <Lights />
+    {/* <axesHelper args={[1]} position={[0, -1, 0]} /> */}
     <ComputerScreen />
     <ComputerDesk />
     <BasicKeyboard />
     <Lamp />
+    <SecondLamp />
   </Suspense>
 );
 
@@ -135,7 +184,7 @@ export default function MainScene() {
   return (
     <LampProvider>
       <Canvas
-        camera={{ position: [0, 0.7, 1.5], fov: 75 }}
+        camera={{ position: [0, 0.7, 1.5], fov: 90 }}
         style={{ background: 'black' }}
       >
         <SceneContent />

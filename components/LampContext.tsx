@@ -4,6 +4,8 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 interface LampContextType {
   isLampOn: boolean;
   toggleLamp: () => void;
+  isSecondLampOn: boolean;
+  toggleSecondLamp: () => void;
 }
 
 const LampContext = createContext<LampContextType | undefined>(undefined);
@@ -22,13 +24,18 @@ interface LampProviderProps {
 
 export const LampProvider: React.FC<LampProviderProps> = ({ children }) => {
   const [isLampOn, setIsLampOn] = useState(true);
+  const [isSecondLampOn, setIsSecondLampOn] = useState(false);
 
   const toggleLamp = () => {
     setIsLampOn(prev => !prev);
   };
 
+  const toggleSecondLamp = () => {
+    setIsSecondLampOn(prev => !prev);
+  };
+
   return (
-    <LampContext.Provider value={{ isLampOn, toggleLamp }}>
+    <LampContext.Provider value={{ isLampOn, toggleLamp, isSecondLampOn, toggleSecondLamp }}>
       {children}
     </LampContext.Provider>
   );
