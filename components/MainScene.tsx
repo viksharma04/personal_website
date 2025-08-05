@@ -2,8 +2,8 @@
 
 import { Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { SpotLight, SpotLightHelper } from 'three';
-import { Html, OrbitControls, useHelper } from '@react-three/drei';
+import { SpotLight } from 'three';
+import { Html, OrbitControls } from '@react-three/drei';
 import ComputerScreen from './3d_models/ComputerScreen';
 import ComputerDesk from './3d_models/ComputerDesk';
 import BasicKeyboard from './3d_models/BasicKeyboard';
@@ -80,7 +80,7 @@ const Lights = () => {
     return (
         <>
             {/* Warm, low ambient light for overall darkness */}
-            <ambientLight intensity={isLampOn ? 5 : 10} color="#2c1a0b" />
+            <ambientLight intensity={isLampOn ? 15 : 50} color="#2c1a0b" />
             <ambientLight intensity={isSecondLampOn ? 0 : 5} color="#2c1a0b" />
             
             {/* Desk lamp: warm, focused, cozy - only when lamp is on */}
