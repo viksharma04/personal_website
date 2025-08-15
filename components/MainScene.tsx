@@ -10,6 +10,8 @@ import BasicKeyboard from './3d_models/BasicKeyboard';
 import Lamp from './3d_models/Lamp';
 import SecondLamp from './3d_models/SecondLamp';
 import { LampProvider, useLamp } from './LampContext';
+import Floor from './Floor';
+import Stars from './Stars';
 
 // LampGlow component: a glowing sphere to simulate the lamp bulb
 const LampGlow = () => {
@@ -80,14 +82,14 @@ const Lights = () => {
     return (
         <>
             {/* Warm, low ambient light for overall darkness */}
-            <ambientLight intensity={isLampOn ? 15 : 50} color="#2c1a0b" />
-            <ambientLight intensity={isSecondLampOn ? 0 : 5} color="#2c1a0b" />
+            <ambientLight intensity={isLampOn ? 5 : 0} color="#2c1a0b" />
+            <ambientLight intensity={isSecondLampOn ? 5 : 0} color="#2c1a0b" />
             
             {/* Desk lamp: warm, focused, cozy - only when lamp is on */}
             {isLampOn && (
                 <spotLight
                     position={[0.4, 0.32, 0.15]}
-                    angle={0.8}
+                    angle={0.6}
                     penumbra={0.7}
                     intensity={2}
                     castShadow
@@ -167,8 +169,8 @@ const SceneContent = () => (
       target={[0, 0.25, 0]}
       minPolarAngle={Math.PI / 2 - 0.30}
       maxPolarAngle={Math.PI / 2 + 0.30}
-      minAzimuthAngle={-0.75}
-      maxAzimuthAngle={0.75}
+      minAzimuthAngle={-2}
+      maxAzimuthAngle={2}
     />
     <Lights />
     {/* <axesHelper args={[1]} position={[0, -1, 0]} /> */}
@@ -177,6 +179,8 @@ const SceneContent = () => (
     <BasicKeyboard />
     <Lamp />
     <SecondLamp />
+    <Floor />
+    <Stars />
   </Suspense>
 );
 
@@ -184,7 +188,7 @@ export default function MainScene() {
   return (
     <LampProvider>
       <Canvas
-        camera={{ position: [0, 0.7, 1.5], fov: 90 }}
+        camera={{ position: [0, 0.7, 2], fov: 90 }}
         style={{ background: 'black' }}
       >
         <SceneContent />
