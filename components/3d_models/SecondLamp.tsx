@@ -3,7 +3,7 @@ import { useGLTF } from '@react-three/drei';
 import { useLamp } from '../LampContext';
 
 function Model3D() {
-    const { scene } = useGLTF('/models/lamp.glb');
+    const { scene } = useGLTF('/api/models/lamp.glb');
     const { toggleSecondLamp } = useLamp();
 
     const handleClick = (e: React.MouseEvent) => {
@@ -41,4 +41,4 @@ export default function SecondLamp() {
     )
 }
 
-useGLTF.preload('/models/lamp.glb')
+useGLTF.preload('/api/models/lamp.glb')
