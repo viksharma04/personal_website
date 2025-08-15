@@ -11,10 +11,11 @@ const s3 = new AWS.S3({
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
   try {
-    const key = params.path.join('/');
+    const resolvedParams = await params;
+    const key = resolvedParams.path.join('/');
     
     if (!key) {
       return NextResponse.json({ error: 'File path is required' }, { status: 400 });
@@ -39,10 +40,15 @@ export async function GET(
       },
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('S3 Error:', error);
     
-    if (error.code === 'NoSuchKey') {
+    if (
+      typeof error === 'object' &&
+      error !== null &&
+      'code' in error &&
+      (error as { code?: string }).code === 'NoSuchKey'
+    ) {
       return NextResponse.json({ error: 'File not found' }, { status: 404 });
     }
     
