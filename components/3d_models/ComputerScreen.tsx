@@ -3,7 +3,7 @@ import { useGLTF } from '@react-three/drei';
 import TerminalScreen from './TerminalScreen';
 
 function Model3D() {
-    const { scene } = useGLTF('/models/computer_screen.glb');
+    const { scene } = useGLTF('/api/models/computer_screen.glb');
     return(
         <mesh
             castShadow
@@ -27,4 +27,4 @@ export default function ComputerScreen() {
 }
 
 
-useGLTF.preload('/models/computer_screen.glb')
+useGLTF.preload('/api/models/computer_screen.glb')

@@ -2,7 +2,7 @@
 import { useGLTF } from '@react-three/drei';
 
 function Model3D() {
-    const { scene } = useGLTF('/models/computer_desk.glb');
+    const { scene } = useGLTF('/api/models/computer_desk.glb');
     return(
         <mesh
             castShadow
@@ -25,4 +25,4 @@ export default function ComputerDesk() {
 }
 
 
-useGLTF.preload('/models/computer_desk.glb')
+useGLTF.preload('/api/models/computer_desk.glb')

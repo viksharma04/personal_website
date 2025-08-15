@@ -3,7 +3,7 @@ import { useGLTF } from '@react-three/drei';
 import { useLamp } from '../LampContext';
 
 function Model3D() {
-    const { scene } = useGLTF('/models/desk_lamp.glb');
+    const { scene } = useGLTF('/api/models/desk_lamp.glb');
     const { toggleLamp } = useLamp();
 
     const handleClick = (e: React.MouseEvent) => {

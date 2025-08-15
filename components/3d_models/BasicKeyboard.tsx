@@ -2,7 +2,7 @@
 import { useGLTF } from '@react-three/drei';
 
 function Model3D() {
-    const { scene } = useGLTF('/models/basic_keyboard.glb');
+    const { scene } = useGLTF('/api/models/basic_keyboard.glb');
     return(
         <mesh
             castShadow
