@@ -23,8 +23,6 @@
 
 - "he who speaks does not know, he who knows does not speak"
 
-- "nothing is more important than listening to people. listen to whomever is speaking no matter what. go beyond their words - jump into their shoes"
-
 - "excellence is a habit"
 
 - "finish the work you started"
@@ -35,15 +33,7 @@
 
 - "the first principle is that you must not fool yourself, and you are the easiest person to fool"
 
-- "all things work together for good"
-
-- "I have nothing to do. I want nothing. I am no one"
-
-- "Righteousness is a golden chain. It's golden, but it's still a chain"
-
 - "I can't enjoy. I am busy happening"
-
-- "it does not matter but I'll work like hell for it"
 
 - "are you willing to walk a little slower so all of us can walk together"
 
