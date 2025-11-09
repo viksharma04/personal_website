@@ -2,6 +2,7 @@
 import MainScene from "@/components/MainScene";
 import WelcomeOverlay from "@/components/WelcomeOverlay";
 import InfoButton from "@/components/InfoButton";
+import QuotesButton from "@/components/QuotesButton";
 import { useState, useEffect } from "react";
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
   return (
     <main className="w-full h-screen relative">
       <MainScene />
+      <QuotesButton />
       <InfoButton onClick={handleShowInfo} />
       <WelcomeOverlay isVisible={showOverlay} onClose={handleCloseOverlay} />
     </main>
