@@ -1,36 +1,34 @@
 'use client';
-import MainScene from "@/components/MainScene";
-import WelcomeOverlay from "@/components/WelcomeOverlay";
-import InfoButton from "@/components/InfoButton";
-import QuotesButton from "@/components/QuotesButton";
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import LandingHub from '@/components/LandingHub';
+import EnterTransition from '@/components/EnterTransition';
+
+type Pending = { href: string; variant: 'crt' | 'fade' };
 
 export default function Home() {
-  const [showOverlay, setShowOverlay] = useState(false);
+  const router = useRouter();
+  const [pending, setPending] = useState<Pending | null>(null);
 
   useEffect(() => {
-    // Show overlay on first visit
-    const hasVisited = localStorage.getItem('hasVisitedWebsite');
-    if (!hasVisited) {
-      setShowOverlay(true);
-      localStorage.setItem('hasVisitedWebsite', 'true');
-    }
-  }, []);
-
-  const handleCloseOverlay = () => {
-    setShowOverlay(false);
-  };
-
-  const handleShowInfo = () => {
-    setShowOverlay(true);
-  };
+    // Warm both destinations so the transition hands off to an already-loading route.
+    router.prefetch('/room');
+    router.prefetch('/terminal');
+  }, [router]);
 
   return (
-    <main className="w-full h-screen relative">
-      <MainScene />
-      <QuotesButton />
-      <InfoButton onClick={handleShowInfo} />
-      <WelcomeOverlay isVisible={showOverlay} onClose={handleCloseOverlay} />
-    </main>
+    <>
+      <LandingHub
+        onEnterRoom={() => setPending({ href: '/room', variant: 'fade' })}
+        onEnterTerminal={() => setPending({ href: '/terminal', variant: 'crt' })}
+      />
+      <EnterTransition
+        active={pending !== null}
+        variant={pending?.variant ?? 'crt'}
+        onComplete={() => {
+          if (pending) router.push(pending.href);
+        }}
+      />
+    </>
   );
 }

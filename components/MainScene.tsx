@@ -3,7 +3,8 @@
 import { Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { SpotLight } from 'three';
-import { Html, OrbitControls } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
+import RoomLoader from './RoomLoader';
 import ComputerScreen from './3d_models/ComputerScreen';
 import ComputerDesk from './3d_models/ComputerDesk';
 import BasicKeyboard from './3d_models/BasicKeyboard';
@@ -133,33 +134,11 @@ const Lights = () => {
     );
 };
 
-// Updated: add spinner to Loader
-const Loader = () => (
-  <Html center>
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div
-        style={{
-          border: '4px solid rgba(255,255,255,0.3)',
-          borderTop: '4px solid white',
-          borderRadius: '50%',
-          width: '40px',
-          height: '40px',
-          animation: 'spin 1s linear infinite',
-        }}
-      />
-      <span style={{ color: 'white', marginTop: '0.5rem', fontSize: '1rem' }}>
-        Loading…
-      </span>
-    </div>
-    <style>
-      {`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}
-    </style>
-  </Html>
-);
-
-// Scene content component that uses the lamp context
+// Scene content component that uses the lamp context.
+// The loading visual is the DOM-level <RoomLoader /> overlay (a sibling of the
+// Canvas), so the in-Canvas Suspense fallback renders nothing.
 const SceneContent = () => (
-  <Suspense fallback={<Loader />}>
+  <Suspense fallback={null}>
     <OrbitControls
       minDistance={0.5}
       maxDistance={3}
@@ -193,6 +172,7 @@ export default function MainScene() {
       >
         <SceneContent />
       </Canvas>
+      <RoomLoader />
     </LampProvider>
   );
 }
