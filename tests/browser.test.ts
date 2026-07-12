@@ -78,6 +78,17 @@ test('terminal close button returns to the previous page', async ({ page }) => {
   await expect(page.getByRole('heading', { name: /hello, i'm vik\./i })).toBeVisible();
 });
 
+test('quotes page renders content and the back link returns home', async ({ page }) => {
+  await page.goto('/quotes');
+  await expect(page.getByRole('heading', { name: /quotes i like/i })).toBeVisible();
+  await expect(page.getByText('Superintending')).toBeVisible();
+  await expect(page.getByText(/swim in the waters of life/)).toBeVisible();
+
+  await page.getByRole('link', { name: /home/i }).click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect(page.getByRole('heading', { name: /hello, i'm vik\./i })).toBeVisible();
+});
+
 test('terminal close button falls back to /room when opened directly', async ({ page }) => {
   await page.goto('/terminal');
   await page.getByRole('button', { name: 'Close terminal' }).click();
