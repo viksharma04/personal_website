@@ -33,6 +33,7 @@ test('entering the room plays the transition overlay then navigates', async ({ p
   await page.goto('/');
   await page.getByRole('button', { name: /enter the room/i }).click();
   await expect(page.getByTestId('enter-transition')).toBeVisible();
+  await expect(page.getByTestId('crt-line')).toBeVisible();
   await expect(page).toHaveURL(/\/room$/);
 });
 
@@ -40,5 +41,11 @@ test('reduced motion still enters the room', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   await page.getByRole('button', { name: /enter the room/i }).click();
+  await expect(page).toHaveURL(/\/room$/);
+});
+
+test('terminal close button returns to /room', async ({ page }) => {
+  await page.goto('/terminal');
+  await page.locator('a[href="/room"]').click();
   await expect(page).toHaveURL(/\/room$/);
 });

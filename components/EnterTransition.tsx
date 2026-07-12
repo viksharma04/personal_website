@@ -30,6 +30,7 @@ export default function EnterTransition({ active, onComplete }: EnterTransitionP
         >
           {!prefersReduced && (
             <motion.div
+              data-testid="crt-line"
               className="h-[3px] rounded-full bg-[#eafff0]"
               style={{
                 boxShadow:
