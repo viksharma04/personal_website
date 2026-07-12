@@ -64,7 +64,7 @@ export default function Terminal() {
             {">"} contact
           </button>
         </div>
-        <Link href={'/'} className='cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] px-4 md:scale-200'>
+        <Link href={'/room'} className='cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] px-4 md:scale-200'>
           <CloseBox size={24} className='hover:scale-120'/> 
         </Link>
       </div>
