@@ -5,18 +5,30 @@ import { useEffect } from 'react';
 interface EnterTransitionProps {
   active: boolean;
   onComplete: () => void;
+  /**
+   * 'crt'  — full CRT power-on: fade to black + a bright expanding line (used
+   *          when navigating to the terminal).
+   * 'fade' — a quick plain fade to black, no line flourish (used when entering
+   *          the room, which hands off to its own green loading bar).
+   */
+  variant?: 'crt' | 'fade';
 }
 
-export default function EnterTransition({ active, onComplete }: EnterTransitionProps) {
+export default function EnterTransition({
+  active,
+  onComplete,
+  variant = 'crt',
+}: EnterTransitionProps) {
   const prefersReduced = useReducedMotion();
 
   useEffect(() => {
     if (!active) return;
-    // Total time before navigation: quick fade for reduced motion, full flourish otherwise.
-    const total = prefersReduced ? 150 : 850;
+    // Time before navigation: quick fade for reduced motion; otherwise the CRT
+    // flourish needs longer than the plain fade.
+    const total = prefersReduced ? 150 : variant === 'crt' ? 850 : 300;
     const id = setTimeout(onComplete, total);
     return () => clearTimeout(id);
-  }, [active, prefersReduced, onComplete]);
+  }, [active, prefersReduced, variant, onComplete]);
 
   return (
     <AnimatePresence>
@@ -26,9 +38,9 @@ export default function EnterTransition({ active, onComplete }: EnterTransitionP
           className="fixed inset-0 z-[100] bg-black flex items-center justify-center pointer-events-none"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.25, ease: 'easeIn' }}
+          transition={{ duration: variant === 'crt' ? 0.25 : 0.2, ease: 'easeIn' }}
         >
-          {!prefersReduced && (
+          {variant === 'crt' && !prefersReduced && (
             <motion.div
               data-testid="crt-line"
               className="h-[3px] rounded-full bg-[#eafff0]"

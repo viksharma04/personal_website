@@ -4,18 +4,31 @@ import { useRouter } from 'next/navigation';
 import LandingHub from '@/components/LandingHub';
 import EnterTransition from '@/components/EnterTransition';
 
+type Pending = { href: string; variant: 'crt' | 'fade' };
+
 export default function Home() {
   const router = useRouter();
-  const [entering, setEntering] = useState(false);
+  const [pending, setPending] = useState<Pending | null>(null);
 
   useEffect(() => {
-    router.prefetch('/room'); // warm the 3D route so entering is snappy
+    // Warm both destinations so the transition hands off to an already-loading route.
+    router.prefetch('/room');
+    router.prefetch('/terminal');
   }, [router]);
 
   return (
     <>
-      <LandingHub onEnter={() => setEntering(true)} />
-      <EnterTransition active={entering} onComplete={() => router.push('/room')} />
+      <LandingHub
+        onEnterRoom={() => setPending({ href: '/room', variant: 'fade' })}
+        onEnterTerminal={() => setPending({ href: '/terminal', variant: 'crt' })}
+      />
+      <EnterTransition
+        active={pending !== null}
+        variant={pending?.variant ?? 'crt'}
+        onComplete={() => {
+          if (pending) router.push(pending.href);
+        }}
+      />
     </>
   );
 }

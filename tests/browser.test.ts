@@ -23,18 +23,25 @@ test('landing footer has the correct contact links', async ({ page }) => {
   await expect(page.getByRole('link', { name: 'GitHub' })).toHaveAttribute('href', 'https://github.com/viksharma04');
 });
 
-test('clicking Enter the room navigates to /room', async ({ page }) => {
-  await page.goto('/');
-  await page.getByRole('button', { name: /enter the room/i }).click();
-  await expect(page).toHaveURL(/\/room$/);
-});
-
-test('entering the room plays the transition overlay then navigates', async ({ page }) => {
+test('entering the room plays a plain fade (no CRT line) then navigates', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: /enter the room/i }).click();
   await expect(page.getByTestId('enter-transition')).toBeVisible();
-  await expect(page.getByTestId('crt-line')).toBeVisible();
+  await expect(page.getByTestId('crt-line')).toHaveCount(0); // the line is the terminal's now
   await expect(page).toHaveURL(/\/room$/);
+});
+
+test('the room shows the retro loading bar while the scene loads', async ({ page }) => {
+  await page.goto('/room');
+  await expect(page.getByTestId('room-loader')).toBeVisible();
+});
+
+test('navigating to the terminal plays the CRT transition then lands there', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Terminal' }).click();
+  await expect(page.getByTestId('enter-transition')).toBeVisible();
+  await expect(page.getByTestId('crt-line')).toBeVisible();
+  await expect(page).toHaveURL(/\/terminal$/);
 });
 
 test('reduced motion still enters the room', async ({ page }) => {

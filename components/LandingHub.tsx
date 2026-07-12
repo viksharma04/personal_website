@@ -1,10 +1,6 @@
 'use client';
 import Link from 'next/link';
-
-const NAV = [
-  { label: 'Terminal', href: '/terminal' },
-  { label: 'Quotes', href: '/quotes' },
-];
+import type { MouseEvent } from 'react';
 
 const SOCIALS = [
   { label: 'GitHub', href: 'https://github.com/viksharma04' },
@@ -13,23 +9,40 @@ const SOCIALS = [
 ];
 
 interface LandingHubProps {
-  onEnter: () => void;
+  /** Enter the room — plays the quick fade, then the room's loading bar. */
+  onEnterRoom: () => void;
+  /** Go to the terminal — plays the CRT power-on transition. */
+  onEnterTerminal: () => void;
 }
 
-export default function LandingHub({ onEnter }: LandingHubProps) {
+// Let modified clicks (open-in-new-tab, etc.) fall through to the browser;
+// only intercept a plain left click to play the transition.
+function isPlainClick(e: MouseEvent) {
+  return !(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) && e.button === 0;
+}
+
+export default function LandingHub({ onEnterRoom, onEnterTerminal }: LandingHubProps) {
   return (
     <div className="w-full h-screen flex flex-col bg-[#efe7db] text-[#241f1c]">
       {/* Nav — centered, no logo */}
       <nav className="flex items-center justify-center gap-8 py-5 border-b border-[#d8cbb8]">
-        {NAV.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className="font-sans text-xs uppercase tracking-[0.18em] text-[#4a423b] hover:text-[#8b3a3a] transition-colors"
-          >
-            {item.label}
-          </Link>
-        ))}
+        <Link
+          href="/terminal"
+          onClick={(e) => {
+            if (!isPlainClick(e)) return;
+            e.preventDefault();
+            onEnterTerminal();
+          }}
+          className="font-sans text-xs uppercase tracking-[0.18em] text-[#4a423b] hover:text-[#8b3a3a] transition-colors"
+        >
+          Terminal
+        </Link>
+        <Link
+          href="/quotes"
+          className="font-sans text-xs uppercase tracking-[0.18em] text-[#4a423b] hover:text-[#8b3a3a] transition-colors"
+        >
+          Quotes
+        </Link>
       </nav>
 
       {/* Hero — centered identity */}
@@ -46,7 +59,7 @@ export default function LandingHub({ onEnter }: LandingHubProps) {
         </p>
         <button
           type="button"
-          onClick={onEnter}
+          onClick={onEnterRoom}
           className="mt-8 font-sans text-xs uppercase tracking-[0.16em] bg-[#8b3a3a] text-[#f6efe6] px-7 py-4 rounded-[2px] hover:bg-[#7c3333] transition-colors cursor-pointer"
         >
           Enter the room →
