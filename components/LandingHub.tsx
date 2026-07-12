@@ -18,7 +18,7 @@ interface LandingHubProps {
 
 export default function LandingHub({ onEnter }: LandingHubProps) {
   return (
-    <main className="w-full h-screen flex flex-col bg-[#efe7db] text-[#241f1c]">
+    <div className="w-full h-screen flex flex-col bg-[#efe7db] text-[#241f1c]">
       {/* Nav — centered, no logo */}
       <nav className="flex items-center justify-center gap-8 py-5 border-b border-[#d8cbb8]">
         {NAV.map((item) => (
@@ -33,7 +33,7 @@ export default function LandingHub({ onEnter }: LandingHubProps) {
       </nav>
 
       {/* Hero — centered identity */}
-      <div className="flex-1 flex flex-col items-center justify-center text-center px-6">
+      <main className="flex-1 flex flex-col items-center justify-center text-center px-6">
         <p className="font-sans text-[11px] uppercase tracking-[0.36em] text-[#a98b6a] mb-6">
           Welcome
         </p>
@@ -51,7 +51,7 @@ export default function LandingHub({ onEnter }: LandingHubProps) {
         >
           Enter the room →
         </button>
-      </div>
+      </main>
 
       {/* Footer — contact/links */}
       <footer className="flex flex-col sm:flex-row items-center justify-between gap-3 px-8 py-5 border-t border-[#d8cbb8]">
@@ -70,6 +70,6 @@ export default function LandingHub({ onEnter }: LandingHubProps) {
           ))}
         </div>
       </footer>
-    </main>
+    </div>
   );
 }
