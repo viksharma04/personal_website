@@ -203,3 +203,18 @@ Extend `tests/browser.test.ts` (Playwright, already configured):
 - Reduced-motion setting skips the flourish.
 - Landing palette does not leak into `/terminal`, `/quotes`, or `/room`.
 - Mobile layout: hero readable, footer stacked, CTA tappable.
+
+## Implementation notes (decisions made during build)
+
+- **GitHub handle confirmed:** `viksharma04`.
+- **QuotesButton removed from `/room`:** the floating quotes button no longer
+  made sense inside the room once the landing hub became the entry point.
+  Quotes is now reached only via the landing nav; `app/quotes` close still
+  returns to `/`. The now-unused `components/QuotesButton.tsx` was deleted.
+  (The room still shows `MainScene`, the first-visit help overlay, and
+  `InfoButton`.)
+- **Reduced-motion test scope:** the reduced-motion E2E test asserts
+  navigation only. The flourish's presence is instead verified positively in
+  the normal transition test (a `crt-line` test id must be visible); a
+  sub-150ms "flourish is absent" assertion would be flaky, so it was
+  deliberately not added.
