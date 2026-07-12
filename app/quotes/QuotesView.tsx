@@ -28,20 +28,14 @@ export default function QuotesView({ principles, quotes }: QuotesViewProps) {
         </Link>
       </div>
 
-      <div className="mx-auto max-w-3xl px-6 pb-24">
-        {/* Header */}
-        <header className="pt-14 pb-16 text-center">
-          <p className="font-sans text-[11px] uppercase tracking-[0.36em] text-[#a98b6a] mb-6">
-            Things I return to
-          </p>
-          <h1 className="font-display leading-none text-[clamp(2.75rem,9vw,4.5rem)]">
-            Quotes I <em className="italic text-[#8b3a3a]">like</em>.
-          </h1>
-        </header>
+      <div className="mx-auto max-w-3xl px-6 pt-12 pb-24">
+        <p className="font-sans text-[11px] uppercase tracking-[0.36em] text-[#a98b6a] mb-12">
+          Things I return to
+        </p>
 
         {/* Principles — an editorial definition list */}
         <section className="mb-20">
-          <h2 className="font-sans text-[11px] uppercase tracking-[0.36em] text-[#a98b6a] mb-8">
+          <h2 className="font-display leading-none text-[clamp(2.5rem,8vw,4rem)] text-[#8b3a3a] mb-8">
             Principles
           </h2>
           <dl className="border-y border-[#d8cbb8] divide-y divide-[#d8cbb8]">
@@ -63,7 +57,7 @@ export default function QuotesView({ principles, quotes }: QuotesViewProps) {
 
         {/* Quotes — serif pull-quotes with a quiet maroon hover accent */}
         <section>
-          <h2 className="font-sans text-[11px] uppercase tracking-[0.36em] text-[#a98b6a] mb-8">
+          <h2 className="font-display leading-none text-[clamp(2.5rem,8vw,4rem)] text-[#8b3a3a] mb-8">
             Quotes
           </h2>
           <ul className="divide-y divide-[#d8cbb8]">

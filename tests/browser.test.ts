@@ -80,7 +80,9 @@ test('terminal close button returns to the previous page', async ({ page }) => {
 
 test('quotes page renders content and the back link returns home', async ({ page }) => {
   await page.goto('/quotes');
-  await expect(page.getByRole('heading', { name: /quotes i like/i })).toBeVisible();
+  await expect(page.getByText('Things I return to')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Principles' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Quotes' })).toBeVisible();
   await expect(page.getByText('Superintending')).toBeVisible();
   await expect(page.getByText(/swim in the waters of life/)).toBeVisible();
 
