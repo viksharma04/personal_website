@@ -5,11 +5,12 @@ import ContactSection from "@/components/ContactSection";
 import DraggableWindow from '@/components/DraggableWindow';
 import SplashCursor from '@/components/SplashCursor'
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { CloseBox } from "@nsmr/pixelart-react";
 import React, { useState } from "react";
 
 export default function Terminal() {
+  const router = useRouter();
   const [showAbout, setShowAbout] = useState(false);
   const [showProjects, setShowProjects] = useState(false);
   const [showContact, setShowContact] = useState(false);
@@ -27,6 +28,29 @@ export default function Terminal() {
         [section]: newZ,
       };
     });
+  };
+
+  const handleClose = () => {
+    if (typeof window === 'undefined') return;
+
+    // The URL the document was originally loaded with. When the user
+    // client-navigated into /terminal from another in-app page (the room,
+    // the landing, etc.) this differs from the current path, so there is an
+    // in-app page to return to. When /terminal was opened directly or
+    // refreshed it equals /terminal, so we fall back to the room instead of
+    // walking off the site with router.back().
+    const [navEntry] = performance.getEntriesByType(
+      'navigation'
+    ) as PerformanceNavigationTiming[];
+    const initialPath = navEntry
+      ? new URL(navEntry.name).pathname
+      : window.location.pathname;
+
+    if (initialPath !== window.location.pathname) {
+      router.back();
+    } else {
+      router.push('/room');
+    }
   };
 
   return (
@@ -64,9 +88,14 @@ export default function Terminal() {
             {">"} contact
           </button>
         </div>
-        <Link href={'/room'} className='cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] px-4 md:scale-200'>
-          <CloseBox size={24} className='hover:scale-120'/> 
-        </Link>
+        <button
+          type='button'
+          aria-label='Close terminal'
+          onClick={handleClose}
+          className='cursor-pointer text-green-500 drop-shadow-[0_0_0.6px_#00FF00] px-4 md:scale-200 bg-transparent border-none outline-none'
+        >
+          <CloseBox size={24} className='hover:scale-120'/>
+        </button>
       </div>
       {showAbout && (
         <DraggableWindow

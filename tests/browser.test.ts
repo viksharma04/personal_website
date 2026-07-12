@@ -44,8 +44,17 @@ test('reduced motion still enters the room', async ({ page }) => {
   await expect(page).toHaveURL(/\/room$/);
 });
 
-test('terminal close button returns to /room', async ({ page }) => {
+test('terminal close button returns to the previous page', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Terminal' }).click();
+  await expect(page).toHaveURL(/\/terminal$/);
+  await page.getByRole('button', { name: 'Close terminal' }).click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect(page.getByRole('heading', { name: /hello, i'm vik\./i })).toBeVisible();
+});
+
+test('terminal close button falls back to /room when opened directly', async ({ page }) => {
   await page.goto('/terminal');
-  await page.locator('a[href="/room"]').click();
+  await page.getByRole('button', { name: 'Close terminal' }).click();
   await expect(page).toHaveURL(/\/room$/);
 });
