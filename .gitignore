@@ -43,3 +43,6 @@ next-env.d.ts
 # 3D assets
 *.glb
 /public/textures/
+
+# superpowers brainstorm companion
+/.superpowers/
