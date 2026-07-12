@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, VT323 } from "next/font/google";
+import { Geist, Geist_Mono, VT323, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,6 +17,13 @@ const vt323 = VT323({
   subsets: ['latin'],
   variable: "--font-vt323"
 })
+
+const cormorant = Cormorant_Garamond({
+  weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: "--font-cormorant",
+});
 
 export const metadata: Metadata = {
   title: "Vik's Portfolio",
@@ -36,7 +43,7 @@ export default function RootLayout({
        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${vt323.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${vt323.variable} ${cormorant.variable} antialiased`}
       >
         {/* <Navbar /> */}
         {children}

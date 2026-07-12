@@ -1,36 +1,14 @@
 'use client';
-import MainScene from "@/components/MainScene";
-import WelcomeOverlay from "@/components/WelcomeOverlay";
-import InfoButton from "@/components/InfoButton";
-import QuotesButton from "@/components/QuotesButton";
-import { useState, useEffect } from "react";
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import LandingHub from '@/components/LandingHub';
 
 export default function Home() {
-  const [showOverlay, setShowOverlay] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    // Show overlay on first visit
-    const hasVisited = localStorage.getItem('hasVisitedWebsite');
-    if (!hasVisited) {
-      setShowOverlay(true);
-      localStorage.setItem('hasVisitedWebsite', 'true');
-    }
-  }, []);
+    router.prefetch('/room'); // warm the 3D route so entering is snappy
+  }, [router]);
 
-  const handleCloseOverlay = () => {
-    setShowOverlay(false);
-  };
-
-  const handleShowInfo = () => {
-    setShowOverlay(true);
-  };
-
-  return (
-    <main className="w-full h-screen relative">
-      <MainScene />
-      <QuotesButton />
-      <InfoButton onClick={handleShowInfo} />
-      <WelcomeOverlay isVisible={showOverlay} onClose={handleCloseOverlay} />
-    </main>
-  );
+  return <LandingHub onEnter={() => router.push('/room')} />;
 }
