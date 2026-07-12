@@ -10,23 +10,28 @@ import { useEffect, useState } from 'react';
  * scene from first paint and fades out once assets are ready.
  */
 export default function RoomLoader() {
-  const { active } = useProgress();
+  const { active, progress } = useProgress();
   const prefersReduced = useReducedMotion();
-  const [visible, setVisible] = useState(true);
+  // When we return to /room via client-side navigation, drei's asset cache is
+  // already warm, so `active` never flips true — there is nothing to wait for.
+  // Detect that up front so the loader doesn't even flash on re-entry.
+  const [visible, setVisible] = useState(() => active || progress < 100);
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
     // Ignore the initial idle state (active is false before loading begins);
-    // only hide once loading has actually started and then finished.
+    // only hide once loading has actually started and then finished...
     if (active) {
       setStarted(true);
       return;
     }
-    if (started) {
+    // ...or when the assets were already loaded when we mounted (progress is at
+    // 100 with nothing active), which is the cached client-side-nav case.
+    if (started || progress >= 100) {
       const id = setTimeout(() => setVisible(false), 500);
       return () => clearTimeout(id);
     }
-  }, [active, started]);
+  }, [active, started, progress]);
 
   return (
     <AnimatePresence>

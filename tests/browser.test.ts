@@ -36,6 +36,24 @@ test('the room shows the retro loading bar while the scene loads', async ({ page
   await expect(page.getByTestId('room-loader')).toBeVisible();
 });
 
+test('returning to the room via client-side nav hides the loading bar', async ({ page }) => {
+  // Regression: entering the terminal from the room and closing it returns to
+  // /room via a client-side navigation. drei caches the 3D assets, so on the
+  // second mount `active` never flips true and the loader used to hang forever.
+  // The landing <-> room round trip exercises the same warm-cache remount
+  // without needing to click the in-canvas screen.
+  await page.goto('/');
+  await page.getByRole('button', { name: /enter the room/i }).click();
+  await expect(page).toHaveURL(/\/room$/);
+  await expect(page.getByTestId('room-loader')).toBeHidden();
+
+  await page.goBack();
+  await expect(page).toHaveURL(/\/$/);
+  await page.getByRole('button', { name: /enter the room/i }).click();
+  await expect(page).toHaveURL(/\/room$/);
+  await expect(page.getByTestId('room-loader')).toBeHidden();
+});
+
 test('navigating to the terminal plays the CRT transition then lands there', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('link', { name: 'Terminal' }).click();
