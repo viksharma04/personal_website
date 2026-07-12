@@ -12,10 +12,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1085.0",
     "@nsmr/pixelart-react": "^2.0.0",
     "@react-three/drei": "^10.1.2",
     "@react-three/fiber": "^9.1.2",
-    "aws-sdk": "^2.1692.0",
     "framer-motion": "^12.18.1",
     "lucide-react": "^0.536.0",
     "next": "15.3.8",
