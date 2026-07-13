@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, devices } from '@playwright/test';
 
 test('room route renders the 3D canvas', async ({ page }) => {
   await page.goto('/room');
@@ -95,4 +95,53 @@ test('terminal close button falls back to /room when opened directly', async ({ 
   await page.goto('/terminal');
   await page.getByRole('button', { name: 'Close terminal' }).click();
   await expect(page).toHaveURL(/\/room$/);
+});
+
+test('each terminal section window has its own working close button', async ({ page }) => {
+  await page.goto('/terminal');
+  await page.getByRole('button', { name: /^>\s*about$/i }).click();
+  await page.getByRole('button', { name: /^>\s*projects$/i }).click();
+
+  const about = page.getByRole('dialog', { name: 'ABOUT.EXE' });
+  const projects = page.getByRole('dialog', { name: 'PROJECTS.EXE' });
+  await expect(about).toBeVisible();
+  await expect(projects).toBeVisible();
+
+  // Closing one window closes only that window.
+  await about.getByRole('button', { name: 'Close ABOUT.EXE' }).click();
+  await expect(about).toBeHidden();
+  await expect(projects).toBeVisible();
+});
+
+test('terminal windows stay within a phone viewport when several are open', async ({ browser }) => {
+  // Use a real device profile: on mobile window.innerWidth diverges from the
+  // vw-based layout viewport, which is exactly what let the cascaded windows
+  // spill off the right edge. A plain setViewportSize keeps them equal and
+  // would not catch the regression.
+  const context = await browser.newContext({
+    ...devices['Pixel 5'],
+    baseURL: 'http://localhost:3000',
+  });
+  const page = await context.newPage();
+  await page.goto('/terminal');
+  await page.getByRole('button', { name: /^>\s*about$/i }).click();
+  await page.getByRole('button', { name: /^>\s*projects$/i }).click();
+  await page.getByRole('button', { name: /^>\s*contact$/i }).click();
+
+  const viewport = await page.evaluate(() => ({
+    width: document.documentElement.clientWidth,
+    height: document.documentElement.clientHeight,
+  }));
+  const windows = page.getByTestId('draggable-window');
+  await expect(windows).toHaveCount(3);
+  for (let i = 0; i < 3; i++) {
+    const box = await windows.nth(i).boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.x).toBeGreaterThanOrEqual(-1);
+    expect(box!.y).toBeGreaterThanOrEqual(-1);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(viewport.width + 1);
+    expect(box!.y + box!.height).toBeLessThanOrEqual(viewport.height + 1);
+  }
+
+  await context.close();
 });
