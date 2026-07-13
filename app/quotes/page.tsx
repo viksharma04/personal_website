@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import QuotesClient from './QuotesClient';
+import QuotesView from './QuotesView';
 
 interface ParsedQuotes {
   principles: { name: string; description: string }[];
@@ -53,5 +53,5 @@ export default async function QuotesPage() {
 
   const { principles, quotes } = parseQuotesFile(quotesContent);
 
-  return <QuotesClient principles={principles} quotes={quotes} />;
+  return <QuotesView principles={principles} quotes={quotes} />;
 }

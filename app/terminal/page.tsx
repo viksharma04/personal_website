@@ -102,6 +102,7 @@ export default function Terminal() {
           title="ABOUT.EXE"
           zIndex={zIndices.about}
           onFocus={() => bringToFront('about')}
+          onClose={() => setShowAbout(false)}
           icon={<span className="bg-[#0f0] text-[#111] rounded w-3 h-3 inline-block mr-2" />}
           initialPos={{ x: 20, y: 80 }}
         >
@@ -113,6 +114,7 @@ export default function Terminal() {
           title="PROJECTS.EXE"
           zIndex={zIndices.projects}
           onFocus={() => bringToFront('projects')}
+          onClose={() => setShowProjects(false)}
           icon={<span className="bg-[#0f0] text-[#111] rounded w-3 h-3 inline-block mr-2" />}
           initialPos={{ x: 60, y: 120 }}
         >
@@ -124,6 +126,7 @@ export default function Terminal() {
           title="CONTACT.EXE"
           zIndex={zIndices.contact}
           onFocus={() => bringToFront('contact')}
+          onClose={() => setShowContact(false)}
           icon={<span className="bg-[#0f0] text-[#111] rounded w-3 h-3 inline-block mr-2" />}
           initialPos={{ x: 100, y: 160 }}
         >
