@@ -11,7 +11,7 @@ test('landing hub renders identity, nav, and CTA at /', async ({ page }) => {
   await expect(page.getByRole('heading', { name: /hello, i'm vik\./i })).toBeVisible();
   await expect(page.getByText('Welcome', { exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Terminal' })).toHaveAttribute('href', '/terminal');
-  await expect(page.getByRole('link', { name: 'Quotes' })).toHaveAttribute('href', '/quotes');
+  await expect(page.getByRole('button', { name: 'Things I return to' })).toBeVisible();
   await expect(page.getByRole('button', { name: /enter the room/i })).toBeVisible();
   await expect(page.locator('canvas')).toHaveCount(0); // no 3D on the landing
 });
@@ -144,4 +144,27 @@ test('terminal windows stay within a phone viewport when several are open', asyn
   }
 
   await context.close();
+});
+
+test('the Things I return to dropdown reveals the quotes and poems links', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('menuitem', { name: 'Quotes' })).toHaveCount(0);
+  await page.getByRole('button', { name: 'Things I return to' }).click();
+  await expect(page.getByRole('menuitem', { name: 'Quotes' })).toHaveAttribute('href', '/quotes');
+  await expect(page.getByRole('menuitem', { name: 'Poems' })).toHaveAttribute('href', '/poems');
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('menuitem', { name: 'Quotes' })).toHaveCount(0);
+});
+
+test('poems page renders the first poem and switches on title click', async ({ page }) => {
+  await page.goto('/poems');
+  const poem = page.getByTestId('poem');
+  await expect(poem.getByRole('heading', { name: /stopping by woods/i })).toBeVisible();
+  await expect(poem).toContainText('And miles to go before I sleep');
+  await page.getByRole('navigation', { name: 'Poems' }).getByRole('button', { name: /how did you die/i }).click();
+  await expect(poem.getByRole('heading', { name: 'How Did You Die?' })).toBeVisible();
+  await expect(poem).toContainText('Did you tackle that trouble that came your way');
+  await page.keyboard.press('ArrowRight');
+  await expect(poem.getByRole('heading', { name: 'If—' })).toBeVisible();
+  await expect(poem).toContainText("you'll be a Man, my son!");
 });
