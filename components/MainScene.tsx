@@ -70,6 +70,18 @@ const SecondSpotLight = () => {
     );
 };
 
+// Corner rim lights (the camera sits at +z looking toward the screen at -z).
+// Intensities and temperatures are deliberately uneven so the room has some
+// texture: the back-left / front-right diagonal carries the light in cool
+// tones, the other diagonal is barely there and warm, and the two lights on
+// each diagonal differ slightly from each other.
+const RIM_LIGHTS: { position: [number, number, number]; intensity: number; color: string }[] = [
+    { position: [-2, 1.5, 1.5], intensity: 0.8, color: '#5a6a9c' },   // back-left: cool blue
+    { position: [2, 1.5, 1.5], intensity: 0.1, color: '#b08a6a' },    // back-right: warm amber
+    { position: [-2, 1.5, -1.5], intensity: 0.1, color: '#a88c78' },  // front-left: warm, slightly muted
+    { position: [2, 1.5, -1.5], intensity: 0.5, color: '#6a7a92' },   // front-right: cool steel
+];
+
 // Lights component
 const Lights = () => {
     const { isLampOn, isSecondLampOn } = useLamp();
@@ -99,12 +111,15 @@ const Lights = () => {
                 />
             )}
             
-            {/* Subtle blue rim light for depth - increased for iPhone */}
-            <directionalLight
-                position={[-2, 1.5, 1.5]}
-                intensity={2 * fillLightMultiplier}
-                color="#3a4a7c"
-            />
+            {/* Rim lights in all four corners for depth - increased for iPhone */}
+            {RIM_LIGHTS.map(({ position, intensity, color }) => (
+                <directionalLight
+                    key={position.join(',')}
+                    position={position}
+                    intensity={intensity * fillLightMultiplier}
+                    color={color}
+                />
+            ))}
 
             {/* Gentle fill light from the monitor - increased for iPhone */}
             <pointLight

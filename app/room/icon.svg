@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" shape-rendering="crispEdges">
+  <!-- 8x8 pixel-art V: black tile, white pixels -->
+  <rect width="8" height="8" fill="#000"/>
+  <path fill="#fff" d="M1 1h1v3h1v1h2v-1h1v-3h1v3h-1v1h-1v1h-2v-1h-1v-1h-1z"/>
+</svg>

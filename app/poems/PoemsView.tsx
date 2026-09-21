@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Poem } from './page';
 
 interface PoemsViewProps {
@@ -10,6 +10,19 @@ interface PoemsViewProps {
 export default function PoemsView({ poems }: PoemsViewProps) {
   const [selected, setSelected] = useState(0);
   const poem = poems[selected];
+  const listRef = useRef<HTMLUListElement>(null);
+
+  // Keep the selected title centred in the mobile strip. Scrolling is clamped
+  // by the browser, so the first/last titles just sit at the edges.
+  useEffect(() => {
+    const list = listRef.current;
+    const item = list?.children[selected] as HTMLElement | undefined;
+    if (!list || !item) return;
+    const isStrip = getComputedStyle(list).flexDirection === 'row';
+    if (!isStrip) return;
+    const target = item.offsetLeft + item.offsetWidth / 2 - list.clientWidth / 2;
+    list.scrollTo({ left: target, behavior: 'smooth' });
+  }, [selected]);
 
   // ←/→ step through the poems; ignore when focus is in a text field.
   useEffect(() => {
@@ -47,20 +60,25 @@ export default function PoemsView({ poems }: PoemsViewProps) {
         {poems.length === 0 ? (
           <p className="font-sans text-[15px] text-[#5c534a]">No poems yet.</p>
         ) : (
-          <div className="grid gap-8 sm:grid-cols-[14rem_1fr] sm:gap-12">
-            {/* Title list — a horizontal strip on mobile, a column on wider screens */}
-            <nav aria-label="Poems">
-              <ul className="flex gap-6 overflow-x-auto pb-2 sm:flex-col sm:gap-0 sm:overflow-visible sm:border-y sm:border-[#d8cbb8] sm:divide-y sm:divide-[#d8cbb8]">
+          <div className="grid min-w-0 gap-8 sm:grid-cols-[14rem_1fr] sm:gap-12">
+            {/* Title list — a horizontal strip of pills on mobile that keeps
+                the selected one centred (fade on the right hints at more), a
+                column on wider screens. min-w-0 keeps the strip from
+                stretching the grid and making the whole page scroll. */}
+            <nav aria-label="Poems" className="relative min-w-0">
+              <ul ref={listRef} className="flex gap-2 overflow-x-auto pb-2 pr-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:flex-col sm:gap-0 sm:overflow-visible sm:pb-0 sm:pr-0 sm:border-y sm:border-[#d8cbb8] sm:divide-y sm:divide-[#d8cbb8]">
                 {poems.map((p, i) => {
                   const active = i === selected;
                   return (
-                    <li key={p.title + i} className="shrink-0">
+                    <li key={p.title + i} className="shrink-0 sm:shrink">
                       <button
                         type="button"
                         onClick={() => setSelected(i)}
                         aria-current={active ? 'true' : undefined}
-                        className={`group relative block w-full text-left py-1 sm:py-4 sm:pl-4 cursor-pointer transition-colors ${
-                          active ? 'text-[#8b3a3a]' : 'text-[#5c534a] hover:text-[#241f1c]'
+                        className={`group relative block max-w-[16rem] sm:max-w-none w-full text-left cursor-pointer transition-colors rounded-full border px-4 py-2 sm:rounded-none sm:border-0 sm:px-0 sm:py-4 sm:pl-4 ${
+                          active
+                            ? 'text-[#8b3a3a] border-[#8b3a3a] sm:bg-transparent'
+                            : 'text-[#5c534a] border-[#d8cbb8] hover:text-[#241f1c]'
                         }`}
                       >
                         <span
@@ -69,7 +87,7 @@ export default function PoemsView({ poems }: PoemsViewProps) {
                             active ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'
                           }`}
                         />
-                        <span className="font-display text-xl leading-tight whitespace-nowrap sm:whitespace-normal">
+                        <span className="block font-display text-base sm:text-xl leading-tight truncate sm:whitespace-normal">
                           {p.title}
                         </span>
                         {p.author && (
@@ -82,6 +100,10 @@ export default function PoemsView({ poems }: PoemsViewProps) {
                   );
                 })}
               </ul>
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-[#efe7db] to-transparent sm:hidden"
+              />
             </nav>
 
             {/* The poem — key on the index so the fade re-runs on switch */}
