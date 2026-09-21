@@ -1,0 +1,30 @@
+---
+title: How Did You Die?
+author: Edmund Vance Cooke
+---
+Did you tackle that trouble that came your way
+With a resolute heart and cheerful?
+Or hide your face from the light of day
+With a craven soul and fearful?
+Oh, a trouble's a ton, or a trouble's an ounce,
+Or a trouble is what you make it,
+And it isn't the fact that you're hurt that counts,
+But only how did you take it?
+
+You are beaten to earth? Well, well, what's that?
+Come up with a smiling face.
+It's nothing against you to fall down flat,
+But to lie there—that's disgrace.
+The harder you're thrown, why the higher you bounce;
+Be proud of your blackened eye!
+It isn't the fact that you're licked that counts,
+It's how did you fight—and why?
+
+And though you be done to the death, what then?
+If you battled the best you could,
+If you played your part in the world of men,
+Why, the Critic will call it good.
+Death comes with a crawl, or comes with a pounce,
+And whether he's slow or spry,
+It isn't the fact that you're dead that counts,
+But only how did you die?
